@@ -17,6 +17,7 @@ namespace TaskManagement.Models
         public Team(string name)
         {
             Name = name;
+            ActivityHistory.AddEventLog($"Team was created! ");
         }
 
         public string Name
@@ -39,7 +40,8 @@ namespace TaskManagement.Models
             _boards.Add(board);
         }
         public List<IMember> Members => new(_members);
-
         public List<IBoard> Boards => new(_boards);
+        public ActivityHistory ActivityHistory { get; } = new();
+    
     }
 }

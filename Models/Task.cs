@@ -19,8 +19,9 @@ namespace TaskManagement.Models
         private readonly string _description;
         private readonly List<IComment> _comments = new();
         private static int _globalId = 0;
+        private readonly List<EventLogger> _logEvents = new();
 
-        public Task(string name, string description,Status status, IBoard board)
+        public Task(string name, string description,Status status, ITeam team)
         {
             Id = _globalId;
             Status = status;
@@ -28,7 +29,7 @@ namespace TaskManagement.Models
             Description = description;
             ActivityHistory.AddEvent($"{GetType().Name} created! {Name} : {Description} {Environment.NewLine} {Status}");
             _globalId++;
-            Board = board;
+            Team = team;
         }
         public string Name
         {
@@ -89,7 +90,12 @@ namespace TaskManagement.Models
         {
             Assignee = member;
         }
+        public List<EventLogger> LogEvents => new(_logEvents);
+        public void AddEventLog(string message)
+        {
+            _logEvents.Add(new EventLogger(message));
+        }
         public IMember? Assignee { get; private set; }
-        public IBoard Board { get; }
+        public ITeam Team { get; }
     }
 }

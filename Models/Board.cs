@@ -11,9 +11,10 @@ namespace TaskManagement.Models
         private const int NameMaxLength = 10;
         private readonly string _invalidNameErrorMessage = $"The name must be a string between {NameMinLength} and {NameMaxLength} symbols.";
 
-        public Board(string name)
+        public Board(string name, ITeam team)
         {
             Name = name;
+            Team = team;
         }
 
         public string Name
@@ -25,5 +26,7 @@ namespace TaskManagement.Models
                 _name = value; 
             }
         }
+
+        public ITeam Team { get; }
     }
 }
