@@ -3,6 +3,7 @@ using TaskManagement.Commands.Enums;
 using TaskManagement.Core.Contracts;
 using System;
 using System.Collections.Generic;
+using TaskManagement.Commands;
 
 namespace TaskManagement.Core
 {
@@ -22,12 +23,12 @@ namespace TaskManagement.Core
 
             switch(commandType)
             {
-                case CommandType.CreatePerson:
-                    throw new NotImplementedException();
-                case CommandType.ShowAllPeople:
-                    throw new NotImplementedException();
-                case CommandType.ShowPersonActivity:
-                    throw new NotImplementedException();
+                case CommandType.AddMember:
+                    return new AddNewMember(commandParams, _repository);
+                case CommandType.ShowAllMembers:
+                    return new ShowAllMembersCommand(commandParams, _repository);
+                case CommandType.ShowMemberActivity:
+                    return new ShowMemberActivity(commandParams, _repository);
                 case CommandType.CreateTeam:
                     throw new NotImplementedException();
                 case CommandType.ShowAllTeams:

@@ -1,12 +1,13 @@
 ﻿using System;
 using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TaskManagement.Commands
 {
     public class ShowAllMembersCommand : BaseCommand
     {
-        private const int ExpectedParameters = 1;
+        private const int ExpectedParameters = 0;
         public ShowAllMembersCommand(IRepository repository)
             : base(repository)
         {
@@ -19,7 +20,8 @@ namespace TaskManagement.Commands
 
         protected override string ExecuteCommand()
         {
-            return $"List of all members: {String.Join(' ',Repository.Members)}";
+            CheckParametersCount(ExpectedParameters);
+            return $"List of all members: {String.Join(' ',Repository.Members.Select(x=>x.Name).ToList())}";
         }
     }
 }

@@ -5,9 +5,9 @@ namespace TaskManagement.Commands.Enums
     public enum CommandType
     {
         Default,
-        CreatePerson,
-        ShowAllPeople,
-        ShowPersonActivity,
+        AddMember,
+        ShowAllMembers,
+        ShowMemberActivity,
         CreateTeam,
         ShowAllTeams,
         ShowTeamActivity,

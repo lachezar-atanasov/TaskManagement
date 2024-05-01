@@ -37,7 +37,9 @@ namespace TaskManagement.Core
 
                     ICommand command = _commandFactory.Create(inputLine);
                     string result = command.Execute();
+                    Console.WriteLine();
                     Console.WriteLine(result.Trim());
+                    Console.WriteLine();
                 }
                 catch (Exception ex)
                 {

@@ -1,6 +1,9 @@
 ﻿using System;
 using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
+using System.Linq;
+using TaskManagement.Exceptions;
+using TaskManagement.Models;
 using TaskManagement.Models.Contracts;
 
 namespace TaskManagement.Commands
@@ -19,7 +22,19 @@ namespace TaskManagement.Commands
 
         protected override string ExecuteCommand()
         {
-            return $"List of all members: {String.Join(' ',Repository.Members)}";
+            CheckParametersCount(ExpectedParameters);
+            string memberToList = CommandParameters[0];
+            if (!Repository.MemberExists(memberToList))
+            {
+                throw new InvalidUserInputException("Member with that name doesn't exists! ");
+            }
+            if (ActivityHistory.LogEvents.All(x => x.Member?.Name != memberToList))
+            {
+                throw new ArgumentException($"Member with name {memberToList} have no logs yet! ");
+            }
+
+            return $"Member {memberToList}: {Environment.NewLine}" +
+                   $"{String.Join(' ',ActivityHistory.LogEvents.Where(x=>x.Member?.Name==memberToList).ToList())}";
         }
     }
 }

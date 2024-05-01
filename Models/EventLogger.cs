@@ -16,7 +16,7 @@ namespace TaskManagement.Models
         public DateTime Time { get; }
         public IMember? Member { get; set; }
         public IBoard Board { get; set; }
-        public string ViewInfo()
+        public override string ToString()
         {
             return $"[{this.Time.ToString("yyyyMMdd|HH:mm:ss.ffff")}]{this.Description}";
         }
