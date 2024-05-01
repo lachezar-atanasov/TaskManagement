@@ -14,11 +14,10 @@ namespace TaskManagement.Models
         private const int NameMinLength = 5;
         private const int NameMaxLength = 15;
         private readonly string _invalidNameErrorMessage = $"The name must be a string between {NameMinLength} and {NameMaxLength} symbols.";
-        private readonly List<EventLogger> _logEvents = new();
         public Member(string name)
         {
             Name = name;
-            ActivityHistory.AddEvent($"Member with name {this.Name} created!",this);
+            ActivityHistory.AddEventLog($"Member with name {this.Name} created!");
         }
 
         public string Name
@@ -32,10 +31,6 @@ namespace TaskManagement.Models
             }
         }
 
-        public List<EventLogger> LogEvents => new(_logEvents);
-        public void AddEventLog(string message)
-        {
-            _logEvents.Add(new EventLogger(message));
-        }
+        public ActivityHistory ActivityHistory { get; } = new();
     }
 }

@@ -6,8 +6,8 @@ namespace TaskManagement.Models
 {
     public class Story : Task, IStory
     {
-        public Story(string name, string description, Priority priority, Size size, IBoard board) 
-            :base(name, description, Status.NotDone, board)
+        public Story(string name, string description, Priority priority, Size size) 
+            :base(name, description, Status.NotDone)
         {
             Priority = priority;
             Size = size;
@@ -40,7 +40,7 @@ namespace TaskManagement.Models
             {
                 Size saveValue = Size;
                 Size = size;
-                ActivityHistory.AddEvent($"Size set from {saveValue} to {Size}");
+                ActivityHistory.AddEventLog($"Size set from {saveValue} to {Size}");
             }
             else
             {

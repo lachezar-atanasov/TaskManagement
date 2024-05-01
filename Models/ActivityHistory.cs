@@ -15,6 +15,12 @@ namespace TaskManagement.Models
             EventLogger log = new(message);
             _logEvents.Add(log);
         }
+        public void AddEventLog(string message,IMember assigner)
+        {
+            EventLogger log = new(message);
+            log.Member = assigner;
+            _logEvents.Add(log);
+        }
 
     }
 }

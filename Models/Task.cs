@@ -21,15 +21,14 @@ namespace TaskManagement.Models
         private static int _globalId = 0;
         private readonly List<EventLogger> _logEvents = new();
 
-        public Task(string name, string description,Status status, ITeam team)
+        public Task(string name, string description,Status status)
         {
             Id = _globalId;
             Status = status;
             Name = name;
             Description = description;
-            ActivityHistory.AddEvent($"{GetType().Name} created! {Name} : {Description} {Environment.NewLine} {Status}");
+            ActivityHistory.AddEventLog($"{GetType().Name} created! {Name} : {Description} {Environment.NewLine} {Status}");
             _globalId++;
-            Team = team;
         }
         public string Name
         {
@@ -73,11 +72,11 @@ namespace TaskManagement.Models
         {
             if (Assignee == null)
             {
-                ActivityHistory.AddEvent(message);
+                ActivityHistory.AddEventLog(message);
             }
             else
             {
-                ActivityHistory.AddEvent(message, Assignee);
+                ActivityHistory.AddEventLog(message, Assignee);
             }
         }
         public virtual void RevertStatus()
@@ -90,12 +89,8 @@ namespace TaskManagement.Models
         {
             Assignee = member;
         }
-        public List<EventLogger> LogEvents => new(_logEvents);
-        public void AddEventLog(string message)
-        {
-            _logEvents.Add(new EventLogger(message));
-        }
+        public ActivityHistory ActivityHistory { get; } = new();
+
         public IMember? Assignee { get; private set; }
-        public ITeam Team { get; }
     }
 }
