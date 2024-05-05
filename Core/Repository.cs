@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
+using System.Linq;
 using TaskManagement.Core.Contracts;
+using TaskManagement.Exceptions;
 using TaskManagement.Models;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
@@ -12,9 +14,7 @@ namespace TaskManagement.Core
     {
         private readonly IList<IMember> _members = new List<IMember>();
         private readonly IList<ITeam> _teams = new List<ITeam>();
-        private readonly IList<IBoard> _boards = new List<IBoard>();
         IList<IMember> IRepository.Members => new List<IMember>(_members);
-        IList<IBoard> IRepository.Boards => new List<IBoard>(_boards);
         IList<ITeam> IRepository.Teams => new List<ITeam>(_teams);
 
         IMember IRepository.CreateMember(string name)
@@ -50,27 +50,40 @@ namespace TaskManagement.Core
             _teams.Add(team);
         }
 
-        public void AddBoard(IBoard board)
+        public IBug CreateBug(string name, string description, Severity severity, Priority priority)
         {
-            if (MemberExists(board.Name))
+            return new Bug(name,description, severity, priority);
+        }
+
+        public IStory CreateStory(string name, string description, Priority priority, Size size)
+        {
+            return new Story(name, description, priority, size);
+        }
+        public IFeedback CreateFeedback(string name, string description)
+        {
+            return new Feedback(name, description);
+        }
+
+        public void CheckMemberExists(string memberName)
+        {
+            if (!this.MemberExists(memberName))
             {
-                throw new DuplicatedEntityException("Board with that name already exists! ");
+                throw new InvalidUserInputException("Member with that name doesn't exists! ");
             }
-            _boards.Add(board);
         }
-
-        public IBug CreateBug(string name, string description, Severity severity, Priority priority, IBoard board)
+        public void CheckTeamExists(string teamName)
         {
-            return new Bug(name,description, severity, priority, board);
+            if (!this.TeamExists(teamName))
+            {
+                throw new InvalidUserInputException("Team with that name doesn't exists! ");
+            }
         }
-
-        public IStory CreateStory(string name, string description, Priority priority, Size size, IBoard board)
+        public void CheckBoardExists(string boardName)
         {
-            return new Story(name, description, priority, size, board);
-        }
-        public IFeedback CreateFeedback(string name, string description, IBoard board)
-        {
-            return new Feedback(name, description, board);
+            if (!this.BoardExists(boardName))
+            {
+                throw new InvalidUserInputException("Board with that name doesn't exists! ");
+            }
         }
         public bool MemberExists(string name)
         {
@@ -88,30 +101,12 @@ namespace TaskManagement.Core
 
         public bool TeamExists(string name)
         {
-            bool result = false;
-            foreach (var team in _teams)
-            {
-                if (team.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    result = true;
-                    break;
-                }
-            }
-            return result;
+            return _teams.Any(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
         }
 
         public bool BoardExists(string name)
         {
-            bool result = false;
-            foreach (var board in _boards)
-            {
-                if (board.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    result = true;
-                    break;
-                }
-            }
-            return result;
+            return _teams.SelectMany(x => x.Boards).Any(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }

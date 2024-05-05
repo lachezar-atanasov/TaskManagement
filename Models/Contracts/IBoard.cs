@@ -5,7 +5,8 @@ namespace TaskManagement.Models.Contracts
 {
     public interface IBoard : INameable, IHistoryable
     {
-        ITeam Team { get; }
+        List<ITask> Tasks { get; }
+        void AddTask(ITask task);
     }
 }
 

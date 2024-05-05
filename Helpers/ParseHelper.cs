@@ -1,12 +1,13 @@
 ﻿using TaskManagement.Exceptions;
 using System;
 using System.Globalization;
+using TaskManagement.Models.Enums;
 
 namespace TaskManagement.Helpers
 {
-    public class ParseHelper
+    public static class ParseHelper
     {
-        protected int ParseIntParameter(string value, string parameterName)
+        public static int ParseIntParameter(string value, string parameterName)
         {
             if (int.TryParse(value, out int result))
             {
@@ -15,7 +16,7 @@ namespace TaskManagement.Helpers
             throw new InvalidUserInputException($"Invalid value for {parameterName}. Should be an integer number.");
         }
 
-        protected decimal ParseDecimalParameter(string value, string parameterName)
+        public static decimal ParseDecimalParameter(string value, string parameterName)
         {
             if (decimal.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out decimal result))
             {
@@ -24,13 +25,32 @@ namespace TaskManagement.Helpers
             throw new InvalidUserInputException($"Invalid value for {parameterName}. Should be a real number.");
         }
 
-        protected bool ParseBoolParameter(string value, string parameterName)
+        public static bool ParseBoolParameter(string value, string parameterName)
         {
             if (bool.TryParse(value, out bool result))
             {
                 return result;
             }
             throw new InvalidUserInputException($"Invalid value for {parameterName}. Should be either true or false.");
+        }
+
+        public static Severity ParseSeverityParameter(string enumString)
+        {
+            Severity parsedEnum;
+            if (Enum.TryParse(enumString, out parsedEnum))
+            {
+                return parsedEnum;
+            } 
+            throw new InvalidUserInputException($"Invalid Severity input!");
+        }
+        public static Priority ParsePriorityParameter(string enumString)
+        {
+            Priority parsedEnum;
+            if (Enum.TryParse(enumString, out parsedEnum))
+            {
+                return parsedEnum;
+            }
+            throw new InvalidUserInputException($"Invalid Priority input!");
         }
     }
 }

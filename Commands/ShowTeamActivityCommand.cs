@@ -8,14 +8,14 @@ using TaskManagement.Models.Contracts;
 
 namespace TaskManagement.Commands
 {
-    public class ShowTeamActivity : BaseCommand
+    public class ShowTeamActivityCommand : BaseCommand
     {
         private const int ExpectedParameters = 1;
-        public ShowTeamActivity(IRepository repository)
+        public ShowTeamActivityCommand(IRepository repository)
             : base(repository)
         {
         }
-        public ShowTeamActivity(IList<string> commandParameters, IRepository repository)
+        public ShowTeamActivityCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }

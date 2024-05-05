@@ -21,12 +21,12 @@ namespace TaskManagement.Models
                 Priority saveValue = Priority;
                 Priority = priority;
                 string logMessage = $"Priority set from {saveValue} to {Priority}";
-                AddLogWithAssigner(logMessage);
+                AddLogWithAssignerIfPresent(logMessage);
             }
             else
             {
                 string errorMessage = $"Priority already at {Priority}";
-                AddLogWithAssigner(errorMessage);
+                AddLogWithAssignerIfPresent(errorMessage);
                 throw new ArgumentException(errorMessage);
             }
             
@@ -40,7 +40,7 @@ namespace TaskManagement.Models
             {
                 Size saveValue = Size;
                 Size = size;
-                ActivityHistory.AddEventLog($"Size set from {saveValue} to {Size}");
+                AddLogWithAssignerIfPresent($"Size set from {saveValue} to {Size}");
             }
             else
             {

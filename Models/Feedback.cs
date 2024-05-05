@@ -8,8 +8,8 @@ namespace TaskManagement.Models
     {
         private int _rating;
 
-        public Feedback(string name, string description, IBoard board) 
-            : base(name, description, Status.New, board)
+        public Feedback(string name, string description) 
+            : base(name, description, Status.New)
         {
         }
 

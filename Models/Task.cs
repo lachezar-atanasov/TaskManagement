@@ -65,10 +65,10 @@ namespace TaskManagement.Models
         public virtual void AdvanceStatus()
         {
             string message = $"The status of item with ID {Id} changed from {Status} to {++Status}";
-            AddLogWithAssigner(message);
+            AddLogWithAssignerIfPresent(message);
         }
 
-        public void AddLogWithAssigner(string message)
+        public void AddLogWithAssignerIfPresent(string message)
         {
             if (Assignee == null)
             {
@@ -82,7 +82,7 @@ namespace TaskManagement.Models
         public virtual void RevertStatus()
         {
             string message = $"The status of item with ID {Id} changed from {Status} to {--Status}";
-            AddLogWithAssigner(message);
+            AddLogWithAssignerIfPresent(message);
         }
 
         public void AssignTo(IMember member)

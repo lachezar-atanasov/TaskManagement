@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics.Metrics;
+using System.Linq;
 using TaskManagement.Helpers;
 using TaskManagement.Models.Contracts;
 
@@ -33,10 +36,18 @@ namespace TaskManagement.Models
 
         public void AddMember(IMember member)
         {
+            if (_members.Contains(member))
+            {
+                throw new DuplicateNameException($"Team {this.Name} already has member with name {member.Name}");
+            }
             _members.Add(member);
         }
         public void AddBoard(IBoard board)
         {
+            if (_boards.Contains(board))
+            {
+                throw new DuplicateNameException($"Team {this.Name} already has board with name {board.Name}");
+            }
             _boards.Add(board);
         }
         public List<IMember> Members => new(_members);

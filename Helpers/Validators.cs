@@ -2,7 +2,7 @@
 
 namespace TaskManagement.Helpers
 {
-    public class Validators
+    public static class Validators
     {
         public static void ValidateIntRange(int value, int min, int max, string message)
         {

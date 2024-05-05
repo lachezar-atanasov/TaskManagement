@@ -10,8 +10,8 @@ namespace TaskManagement.Models
     {
         private readonly List<string> _steps = new();
 
-        public Bug(string name, string description, Severity severity, Priority priority, IBoard board) 
-            :base( name, description,Status.Active,board)
+        public Bug(string name, string description, Severity severity, Priority priority) 
+            :base( name, description,Status.Active)
         {
             Priority = priority;
             Severity = severity;
@@ -29,7 +29,9 @@ namespace TaskManagement.Models
             }
             else
             {
-                throw new ArgumentException("Status already at Fixed");
+                string errorMessage = $"Status already at Fixed";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new ArgumentException(errorMessage);
             }
            
         }
@@ -40,7 +42,7 @@ namespace TaskManagement.Models
             {
                 Priority saveValue = Priority;
                 Priority = priority; 
-                ActivityHistory.AddEvent($"Priority set from {saveValue} to {Priority}");
+                AddLogWithAssignerIfPresent($"Priority set from {saveValue} to {Priority}");
             }
             else
             {
@@ -54,11 +56,13 @@ namespace TaskManagement.Models
             {
                 Severity saveValue = Severity;
                 Severity = severity;
-                ActivityHistory.AddEvent($"Severity set from {saveValue} to {Severity}");
+                AddLogWithAssignerIfPresent($"Severity set from {saveValue} to {Severity}");
             }
             else
             {
-                throw new ArgumentException($"Severity already at {Severity}");
+                string errorMessage = $"Severity already at {Severity}";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new ArgumentException(errorMessage);
             }
         }
 

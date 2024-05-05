@@ -24,23 +24,25 @@ namespace TaskManagement.Core
             switch(commandType)
             {
                 case CommandType.AddMember:
-                    return new AddNewMember(commandParams, _repository);
+                    return new AddNewMemberCommand(commandParams, _repository);
                 case CommandType.ShowAllMembers:
                     return new ShowAllMembersCommand(commandParams, _repository);
                 case CommandType.ShowMemberActivity:
-                    return new ShowMemberActivity(commandParams, _repository);
+                    return new ShowMemberActivityCommand(commandParams, _repository);
                 case CommandType.CreateTeam:
-                    throw new NotImplementedException();
+                    return new CreateTeamCommand(commandParams, _repository);
                 case CommandType.ShowAllTeams:
-                    throw new NotImplementedException();
+                    return new ShowAllTeamsCommand(commandParams, _repository);
                 case CommandType.ShowTeamActivity:
-                    throw new NotImplementedException();
-                case CommandType.CreateNewBoardInTeam:
-                    throw new NotImplementedException();
+                    return new ShowTeamActivityCommand(commandParams, _repository);
+                case CommandType.AddMemberToTeam:
+                    return new AddMemberToTeamCommand(commandParams, _repository);
                 case CommandType.ShowAllTeamMembers:
-                    throw new NotImplementedException();
-                case CommandType.CreateNewTask:
-                    throw new NotImplementedException();
+                    return new ShowAllTeamMembersCommand(commandParams, _repository);
+                case CommandType.CreateNewBoardInTeam:
+                    return new CreateNewBoardInTeamCommand(commandParams, _repository);
+                case CommandType.CreateNewBugInBoard:
+                    return new CreateNewBugInBoard(commandParams, _repository);
                 case CommandType.ChangeBugDetail:
                     throw new NotImplementedException();
                 case CommandType.ChangeStoryDetail:

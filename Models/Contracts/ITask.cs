@@ -12,6 +12,7 @@ namespace TaskManagement.Models.Contracts
         void AddComment(Comment comment);
         void AdvanceStatus();
         void RevertStatus();
+        void AssignTo(IMember member);
 
     }
 }

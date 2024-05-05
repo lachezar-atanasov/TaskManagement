@@ -33,6 +33,11 @@ namespace TaskManagement.Models
             }
         }
 
+        public void AddTask(ITask task)
+        {
+            task.AssignTo(this);
+            _tasks.Add(task);
+        }
         public ActivityHistory ActivityHistory { get; } = new();
         public List<ITask> Tasks => new(_tasks);
     }

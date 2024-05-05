@@ -11,10 +11,10 @@ namespace TaskManagement.Models
         private const int NameMaxLength = 10;
         private readonly string _invalidNameErrorMessage = $"The name must be a string between {NameMinLength} and {NameMaxLength} symbols.";
 
-        public Board(string name, ITeam team)
+        private readonly List<ITask> _tasks = new List<ITask>();
+        public Board(string name)
         {
             Name = name;
-            Team = team;
         }
 
         public string Name
@@ -27,7 +27,11 @@ namespace TaskManagement.Models
             }
         }
 
-        public ITeam Team { get; }
+        public void AddTask(ITask task)
+        {
+            _tasks.Add(task);
+        }
+        public List<ITask> Tasks => new(_tasks);
         public ActivityHistory ActivityHistory { get; }
     }
 }

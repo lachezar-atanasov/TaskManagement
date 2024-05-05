@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace TaskManagement.Commands
 {
-    public  class AddNewMember : BaseCommand
+    public  class AddNewMemberCommand : BaseCommand
     {
-        private const int ExpectedParameters = 2;
-        public AddNewMember(IRepository repository) 
+        private const int ExpectedParameters = 1;
+        public AddNewMemberCommand(IRepository repository) 
             : base(repository)
         {
         }
 
-        public AddNewMember(IList<string> commandParameters, IRepository repository) 
+        public AddNewMemberCommand(IList<string> commandParameters, IRepository repository) 
             : base(commandParameters, repository)
         {
         }
