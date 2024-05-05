@@ -9,7 +9,6 @@ namespace TaskManagement.Models
     {
         private readonly List<IEventLogger> _logEvents = new();
         public List<IEventLogger> LogEvents => new (_logEvents);
-
         public void AddEventLog(string message)
         { 
             EventLogger log = new(message);
@@ -17,8 +16,10 @@ namespace TaskManagement.Models
         }
         public void AddEventLog(string message,IMember assigner)
         {
-            EventLogger log = new(message);
-            log.Member = assigner;
+            EventLogger log = new(message)
+            {
+                Assigner = assigner
+            };
             _logEvents.Add(log);
         }
 

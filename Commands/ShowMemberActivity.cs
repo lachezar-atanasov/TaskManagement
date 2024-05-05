@@ -28,13 +28,19 @@ namespace TaskManagement.Commands
             {
                 throw new InvalidUserInputException("Member with that name doesn't exists! ");
             }
-            if (ActivityHistory.LogEvents.All(x => x.Member?.Name != memberToList))
+
+            IMember foundMember = Repository.Members.First(x => x.Name == memberToList);
+            if (foundMember.ActivityHistory.LogEvents.All(x => x.Assigner?.Name != memberToList))
             {
                 throw new ArgumentException($"Member with name {memberToList} have no logs yet! ");
             }
-
+            
+            IList<IEventLogger> memberTasksActivityHistory = foundMember.ActivityHistory.LogEvents
+                .Where(x => x.Assigner?.Name == memberToList).ToList();
+            var totalMemberActivityHistory =
+                memberTasksActivityHistory.Concat(foundMember.ActivityHistory.LogEvents).ToList();
             return $"Member {memberToList}: {Environment.NewLine}" +
-                   $"{String.Join(' ',ActivityHistory.LogEvents.Where(x=>x.Member?.Name==memberToList).ToList())}";
+                   $"{String.Join(Environment.NewLine, totalMemberActivityHistory.OrderBy(x=>x.Time))}";
         }
     }
 }

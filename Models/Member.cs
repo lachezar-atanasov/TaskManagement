@@ -9,11 +9,13 @@ namespace TaskManagement.Models
 {
     public class Member : IMember
     {
-        private string _name;
-        
         private const int NameMinLength = 5;
         private const int NameMaxLength = 15;
         private readonly string _invalidNameErrorMessage = $"The name must be a string between {NameMinLength} and {NameMaxLength} symbols.";
+
+        private string _name;
+        public List<ITask> _tasks;
+
         public Member(string name)
         {
             Name = name;
@@ -32,5 +34,6 @@ namespace TaskManagement.Models
         }
 
         public ActivityHistory ActivityHistory { get; } = new();
+        public List<ITask> Tasks => new(_tasks);
     }
 }

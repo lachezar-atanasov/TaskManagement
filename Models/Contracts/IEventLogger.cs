@@ -6,6 +6,8 @@ namespace TaskManagement.Models.Contracts
     {
         string Description { get; }
         DateTime Time { get; }
-        IMember? Member { get; set; }
+        IMember? Assigner { get; set; }
+        IBoard? CurrentBoard { get; set; }
+        ITeam? CurrentTeam { get; set; }
     }
 }

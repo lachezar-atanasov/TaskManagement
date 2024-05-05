@@ -5,7 +5,7 @@ namespace TaskManagement.Commands
 {
     public  class AddNewMember : BaseCommand
     {
-        private const int ExpectedParameters = 1;
+        private const int ExpectedParameters = 2;
         public AddNewMember(IRepository repository) 
             : base(repository)
         {

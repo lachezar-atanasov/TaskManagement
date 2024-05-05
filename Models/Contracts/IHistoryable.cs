@@ -2,8 +2,8 @@
 
 namespace TaskManagement.Models.Contracts
 {
-    public interface IMember : INameable, IHistoryable
+    public interface IHistoryable
     {
-      List<ITask> Tasks { get; }
+        ActivityHistory ActivityHistory { get; }
     }
 }

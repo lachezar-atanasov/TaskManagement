@@ -28,13 +28,27 @@ namespace TaskManagement.Commands
             {
                 throw new InvalidUserInputException("Team with that name doesn't exists! ");
             }
-            if (Repository.Teams.All(x => x..Name != teamName))
+
+            var searchedTeam = Repository.Teams.First(x => x.Name == teamName);
+            var totalTeamActivityHistory = new List<IEventLogger>();
+            totalTeamActivityHistory = totalTeamActivityHistory.Concat(searchedTeam.ActivityHistory.LogEvents).ToList();
+
+            foreach (var board in searchedTeam.Boards)
+            {
+                totalTeamActivityHistory = totalTeamActivityHistory.Concat(board.ActivityHistory.LogEvents).ToList();
+            }
+            foreach (var member in searchedTeam.Members)
+            {
+                totalTeamActivityHistory = totalTeamActivityHistory.Concat(member.ActivityHistory.LogEvents).ToList();
+            }
+
+            if (totalTeamActivityHistory.Count==0)
             {
                 throw new ArgumentException($"Team with name {teamName} have no logs yet! ");
             }
 
             return $"Team '{teamName}': {Environment.NewLine}" +
-                   $"{String.Join(' ', ActivityHistory.LogEvents.Where(x => x.Board?.Team.Name == teamName).ToList())}";
+                   $"{string.Join(' ', totalTeamActivityHistory)}";
         }
     }
 }

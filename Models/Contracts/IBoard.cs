@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TaskManagement.Models.Contracts
 {
-    public interface IBoard : INameable
+    public interface IBoard : INameable, IHistoryable
     {
         ITeam Team { get; }
     }

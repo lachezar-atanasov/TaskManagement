@@ -28,5 +28,6 @@ namespace TaskManagement.Models
         }
 
         public ITeam Team { get; }
+        public ActivityHistory ActivityHistory { get; }
     }
 }

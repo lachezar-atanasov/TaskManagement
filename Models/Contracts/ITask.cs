@@ -3,7 +3,7 @@ using TaskManagement.Models.Enums;
 
 namespace TaskManagement.Models.Contracts
 {
-    public interface ITask: INameable, IAssignee
+    public interface ITask: INameable, IAssignee, IHistoryable
     {
         string Description { get; }
         public int Id {  get; }
