@@ -2,6 +2,7 @@
 using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
 using System.Linq;
+using TaskManagement.Commands.Enums;
 
 namespace TaskManagement.Commands
 {
@@ -20,7 +21,7 @@ namespace TaskManagement.Commands
 
         protected override string ExecuteCommand()
         {
-            CheckParametersCount(ExpectedParameters);
+            CheckParametersCount(ExpectedParameters,$"{CommandType.ShowAllTeamMembers} 'teamName'");
             string teamName = CommandParameters[0];
 
             var foundTeam = Repository.GetTeamIfExists(teamName);

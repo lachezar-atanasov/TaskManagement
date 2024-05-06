@@ -2,6 +2,7 @@
 using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
 using System.Linq;
+using TaskManagement.Commands.Enums;
 using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
 using TaskManagement.Models;
@@ -24,7 +25,7 @@ namespace TaskManagement.Commands
 
         protected override string ExecuteCommand()
         {
-            CheckParametersCount(ExpectedParameters);
+            CheckParametersCount(ExpectedParameters,$"{CommandType.CreateNewFeedbackInBoard} 'feedbackName' 'feedbackDescription' 'boardName' 'teamName'");
             string feedbackName = CommandParameters[0];
             string feedbackDescription = CommandParameters[1];
             string boardName = CommandParameters[2];

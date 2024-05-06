@@ -14,6 +14,7 @@ namespace TaskManagement.Commands
     public class ChangeBugPriority : BaseCommand
     {
         private const int ExpectedParameters = 2;
+        private string _bugPriorities = $"{Priority.Low}, {Priority.Medium}, {Priority.High}";
         public ChangeBugPriority(IRepository repository)
             : base(repository)
         {
@@ -25,7 +26,7 @@ namespace TaskManagement.Commands
 
         protected override string ExecuteCommand()
         {
-            CheckParametersCount(ExpectedParameters,$"{CommandType.ChangeBugPriority} 'bugId' 'newPriority'");
+            CheckParametersCount(ExpectedParameters,$"{CommandType.ChangeBugPriority} 'bugId' 'newPriority({_bugPriorities})'");
             int bugId = ParseHelper.ParseIntParameter(CommandParameters[0],"ID");
             Priority newBugPriority = ParseHelper.ParsePriorityParameter(CommandParameters[1]);
 

@@ -13,7 +13,7 @@ namespace TaskManagement.Commands
 {
     public class UnassignTaskFromMember : BaseCommand
     {
-        private const int ExpectedParameters = 2;
+        private const int ExpectedParameters = 1;
         public UnassignTaskFromMember(IRepository repository)
             : base(repository)
         {

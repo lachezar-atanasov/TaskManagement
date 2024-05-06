@@ -2,6 +2,7 @@
 using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
 using System.Linq;
+using TaskManagement.Commands.Enums;
 using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
 using TaskManagement.Models;
@@ -13,6 +14,8 @@ namespace TaskManagement.Commands
     public class CreateNewBugInBoard : BaseCommand
     {
         private const int ExpectedParameters = 6;
+        private readonly string _bugPriorities = $"{Priority.Low}, {Priority.Medium}, {Priority.High}";
+        private readonly string _bugSeverities = $"{Severity.Minor}, {Severity.Major}, {Severity.Critical}";
         public CreateNewBugInBoard(IRepository repository)
             : base(repository)
         {
@@ -24,7 +27,7 @@ namespace TaskManagement.Commands
 
         protected override string ExecuteCommand()
         {
-            CheckParametersCount(ExpectedParameters);
+            CheckParametersCount(ExpectedParameters, $"{CommandType.CreateNewBugInBoard} 'bugName' 'bugDescription' 'bugSeverity({_bugSeverities})' 'bugPriority({_bugPriorities})' 'boardName' 'teamName'");
             string bugName = CommandParameters[0];
             string bugDescription = CommandParameters[1];
             Severity bugSeverity = ParseHelper.ParseSeverityParameter(CommandParameters[2]);

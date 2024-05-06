@@ -27,8 +27,12 @@ namespace TaskManagement.Core
                     return new AddNewMemberCommand(commandParams, _repository);
                 case CommandType.ShowAllMembers:
                     return new ShowAllMembersCommand(commandParams, _repository);
+                case CommandType.ShowAllTeamBoards:
+                    return new ShowAllTeamBoardsCommand(commandParams, _repository);
                 case CommandType.ShowMemberActivity:
                     return new ShowMemberActivityCommand(commandParams, _repository);
+                case CommandType.ShowBoardActivity:
+                    return new ShowBoardActivityCommand(commandParams, _repository);
                 case CommandType.CreateTeam:
                     return new CreateTeamCommand(commandParams, _repository);
                 case CommandType.ShowAllTeams:
@@ -43,6 +47,10 @@ namespace TaskManagement.Core
                     return new CreateNewBoardInTeamCommand(commandParams, _repository);
                 case CommandType.CreateNewBugInBoard:
                     return new CreateNewBugInBoard(commandParams, _repository);
+                case CommandType.CreateNewFeedbackInBoard:
+                    return new CreateNewFeedbackInBoard(commandParams, _repository);
+                case CommandType.CreateNewStoryInBoard:
+                    return new CreateNewStoryInBoard(commandParams, _repository);
                 case CommandType.ChangeBugPriority:
                     return new ChangeBugPriority(commandParams, _repository);
                 case CommandType.ChangeBugSeverity:
