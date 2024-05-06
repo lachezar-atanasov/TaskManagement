@@ -25,7 +25,6 @@ namespace TaskManagement.Models
 
         public string Name
         {
-            //TODO: Unique name in application check
             get => _name;
             private set
             {
@@ -34,20 +33,26 @@ namespace TaskManagement.Models
             }
         }
 
-        public void AddMember(IMember member)
+        public void AddMemberIfNotExists(IMember member)
         {
             if (_members.Contains(member))
             {
-                throw new DuplicateNameException($"Team {this.Name} already has member with name {member.Name}");
+                string errorMessage = $"Team {this.Name} already has member with name {member.Name}";
+                ActivityHistory.AddEventLog(errorMessage);
+                throw new DuplicateNameException(errorMessage);
             }
+            ActivityHistory.AddEventLog($"Member '{member.Name}' added to team! ");
             _members.Add(member);
         }
-        public void AddBoard(IBoard board)
+        public void AddBoardIfNotExists(IBoard board)
         {
             if (_boards.Contains(board))
             {
-                throw new DuplicateNameException($"Team {this.Name} already has board with name {board.Name}");
+                string errorMessage = $"Team {this.Name} already has board with name {board.Name}";
+                ActivityHistory.AddEventLog(errorMessage);
+                throw new DuplicateNameException(errorMessage);
             }
+            ActivityHistory.AddEventLog($"Board '{board.Name}' added to team! ");
             _boards.Add(board);
         }
         public List<IMember> Members => new(_members);

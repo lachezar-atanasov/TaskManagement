@@ -15,7 +15,7 @@ namespace TaskManagement.Models
 
         public int Rating => _rating;
 
-        public override void AdvanceStatus()
+        public override void AdvanceStatusAndLog()
         {
             if (Status==Status.New)
             {
@@ -33,10 +33,10 @@ namespace TaskManagement.Models
             {
                 throw new ArgumentException("Already at Done");
             }
-            base.AdvanceStatus();
+            base.AdvanceStatusAndLog();
         }
 
-        public override void RevertStatus()
+        public override void RevertStatusAndLog()
         {
             if (Status == Status.New)
             {
@@ -54,7 +54,7 @@ namespace TaskManagement.Models
             {
                 Status = Status.Scheduled;
             }
-            base.RevertStatus();
+            base.RevertStatusAndLog();
         }
     }
 }

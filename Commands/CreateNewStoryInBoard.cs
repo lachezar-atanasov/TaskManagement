@@ -10,14 +10,14 @@ using TaskManagement.Models.Enums;
 
 namespace TaskManagement.Commands
 {
-    public class CreateNewBugInBoard : BaseCommand
+    public class CreateNewStoryInBoard : BaseCommand
     {
         private const int ExpectedParameters = 6;
-        public CreateNewBugInBoard(IRepository repository)
+        public CreateNewStoryInBoard(IRepository repository)
             : base(repository)
         {
         }
-        public CreateNewBugInBoard(IList<string> commandParameters, IRepository repository)
+        public CreateNewStoryInBoard(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }
@@ -25,17 +25,17 @@ namespace TaskManagement.Commands
         protected override string ExecuteCommand()
         {
             CheckParametersCount(ExpectedParameters);
-            string bugName = CommandParameters[0];
-            string bugDescription = CommandParameters[1];
-            Severity bugSeverity = ParseHelper.ParseSeverityParameter(CommandParameters[2]);
+            string storyName = CommandParameters[0];
+            string storyDesc = CommandParameters[1];
+            Size storySize = ParseHelper.ParseSizeParameter(CommandParameters[2]);
             Priority bugPriority = ParseHelper.ParsePriorityParameter(CommandParameters[3]);
             string boardName = CommandParameters[4];
             string teamName = CommandParameters[5];
 
-            var foundBoard = Repository.GetBoardIfExists(boardName,teamName);
-            foundBoard.AddTask(Repository.CreateBug(bugName,bugDescription, bugSeverity, bugPriority));
+            var foundBoard = Repository.GetBoardIfExists(boardName, teamName);
+            foundBoard.AddTask(Repository.CreateStory(storyName,storyDesc,bugPriority, storySize));
 
-            return $"Bug with name {bugName} added successfully to board '{boardName}'!";
+            return $"Story with name {storyName} added successfully to board '{boardName}'!";
         }
     }
 }

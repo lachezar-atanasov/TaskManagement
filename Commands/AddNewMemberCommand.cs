@@ -19,8 +19,10 @@ namespace TaskManagement.Commands
         protected override string ExecuteCommand()
         {
             CheckParametersCount(ExpectedParameters);
+
             string name = CommandParameters[0];
-            Repository.AddMember(Repository.CreateMember(name));
+
+            Repository.AddMemberIfNotExists(Repository.CreateMember(name));
             return $"Member with name {name} added successfully!";
         }
     }

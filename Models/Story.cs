@@ -44,33 +44,34 @@ namespace TaskManagement.Models
             }
             else
             {
-                throw new ArgumentException($"Size already at {Size}");
+                string errorMessage = $"Size already at {Size}";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new ArgumentException(errorMessage);
             }
             
         }
 
-        public override void AdvanceStatus()
+        public override void AdvanceStatusAndLog()
         {
             if(Status  == Status.Done)
             {
-                throw new ArgumentException("Status already at Done");
+                string errorMessage = "Status already at Done";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new ArgumentException(errorMessage);
             }
-            else
-            {
-                base.AdvanceStatus();
-                Status += 1;
-            }
-            //TODO: event history implementation
+            base.AdvanceStatusAndLog();
+            Status += 1;
         }
 
-        public override void RevertStatus()
+        public override void RevertStatusAndLog()
         {
             if(Status == Status.NotDone)
             {
-                throw new ArgumentException("Status already Not Done");
+                string errorMessage = "Status already Not Done";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new ArgumentException(errorMessage);
             }
-
-            base.RevertStatus();
+            base.RevertStatusAndLog();
             Status -= 1;
         }
     }

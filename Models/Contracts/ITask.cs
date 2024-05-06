@@ -10,8 +10,8 @@ namespace TaskManagement.Models.Contracts
         Status Status { get; }
         List<IComment> Comments { get; } 
         void AddComment(Comment comment);
-        void AdvanceStatus();
-        void RevertStatus();
+        void AdvanceStatusAndLog();
+        void RevertStatusAndLog();
         void AssignTo(IMember member);
 
     }

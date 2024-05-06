@@ -14,7 +14,7 @@ namespace TaskManagement.Models
         private readonly string _invalidNameErrorMessage = $"The name must be a string between {NameMinLength} and {NameMaxLength} symbols.";
 
         private string _name;
-        public List<ITask> _tasks;
+        private readonly List<ITask> _tasks = new();
 
         public Member(string name)
         {
@@ -24,7 +24,6 @@ namespace TaskManagement.Models
 
         public string Name
         {
-            //TODO: Unique name in application check
             get => _name;
             private set
             {
@@ -35,6 +34,7 @@ namespace TaskManagement.Models
 
         public void AddTask(ITask task)
         {
+            ActivityHistory.AddEventLog($"{task.GetType().Name} with name {task.Name} assigned!");
             task.AssignTo(this);
             _tasks.Add(task);
         }

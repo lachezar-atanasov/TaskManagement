@@ -10,14 +10,14 @@ using TaskManagement.Models.Enums;
 
 namespace TaskManagement.Commands
 {
-    public class CreateNewBugInBoard : BaseCommand
+    public class ChangeBugPriority : BaseCommand
     {
         private const int ExpectedParameters = 6;
-        public CreateNewBugInBoard(IRepository repository)
+        public ChangeBugPriority(IRepository repository)
             : base(repository)
         {
         }
-        public CreateNewBugInBoard(IList<string> commandParameters, IRepository repository)
+        public ChangeBugPriority(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }
@@ -32,7 +32,9 @@ namespace TaskManagement.Commands
             string boardName = CommandParameters[4];
             string teamName = CommandParameters[5];
 
-            var foundBoard = Repository.GetBoardIfExists(boardName,teamName);
+            Repository.CheckBoardExists(boardName,teamName);
+
+            var foundBoard = Repository.Teams.SelectMany(x=>x.Boards).First(x => x.Name == boardName);
             foundBoard.AddTask(Repository.CreateBug(bugName,bugDescription, bugSeverity, bugPriority));
 
             return $"Bug with name {bugName} added successfully to board '{boardName}'!";

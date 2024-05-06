@@ -23,12 +23,14 @@ namespace TaskManagement.Commands
         protected override string ExecuteCommand()
         {
             CheckParametersCount(ExpectedParameters);
+
             string boardName = CommandParameters[0];
             string teamName = CommandParameters[1];
-            Repository.CheckTeamExists(teamName);
 
-            var foundTeam = Repository.Teams.First(x => x.Name == teamName);
-            foundTeam.AddBoard(Repository.CreateBoard(boardName));
+            var foundTeam = Repository.GetTeamIfExists(teamName);
+
+            foundTeam.AddBoardIfNotExists(Repository.CreateBoard(boardName));
+
             return $"Board with name {boardName} added successfully to team '{teamName}'!";
         }
     }

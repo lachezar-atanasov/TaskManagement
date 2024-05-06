@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using TaskManagement.Helpers;
 using TaskManagement.Models.Contracts;
 
@@ -11,10 +13,11 @@ namespace TaskManagement.Models
         private const int NameMaxLength = 10;
         private readonly string _invalidNameErrorMessage = $"The name must be a string between {NameMinLength} and {NameMaxLength} symbols.";
 
-        private readonly List<ITask> _tasks = new List<ITask>();
+        private readonly List<ITask> _tasks = new();
         public Board(string name)
         {
             Name = name;
+            ActivityHistory.AddEventLog($"Board with name {this.Name} created!");
         }
 
         public string Name
@@ -29,9 +32,10 @@ namespace TaskManagement.Models
 
         public void AddTask(ITask task)
         {
+            ActivityHistory.AddEventLog($"Added {task.GetType().Name} with title {task.Name}!");
             _tasks.Add(task);
         }
         public List<ITask> Tasks => new(_tasks);
-        public ActivityHistory ActivityHistory { get; }
+        public ActivityHistory ActivityHistory { get; } = new();
     }
 }

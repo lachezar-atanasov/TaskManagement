@@ -25,12 +25,10 @@ namespace TaskManagement.Commands
             CheckParametersCount(ExpectedParameters);
             string memberName = CommandParameters[0];
             string teamName = CommandParameters[1];
-            Repository.CheckMemberExists(memberName);
-            Repository.CheckTeamExists(teamName);
 
-            var foundTeam = Repository.Teams.First(x => x.Name == teamName);
-            var foundMember = Repository.Members.First(x => x.Name == memberName);
-            foundTeam.AddMember(foundMember);
+            var foundTeam = Repository.GetTeamIfExists(teamName);
+            var foundMember = Repository.GetMemberIfExists(memberName);
+            foundTeam.AddMemberIfNotExists(foundMember);
 
             return $"Member '{memberName}' successfully added to team '{teamName}'";
         }

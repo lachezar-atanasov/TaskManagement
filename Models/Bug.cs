@@ -20,11 +20,11 @@ namespace TaskManagement.Models
         public Severity Severity { get; private set; }
         public Priority Priority { get; private set; }
 
-        public override void AdvanceStatus()
+        public override void AdvanceStatusAndLog()
         {
             if(Status == Status.Active)
             {
-                base.AdvanceStatus();
+                base.AdvanceStatusAndLog();
                 Status = Status.Fixed;
             }
             else
@@ -70,11 +70,11 @@ namespace TaskManagement.Models
         {
             _steps.Add(stepToAdd);
         }
-        public override void RevertStatus()
+        public override void RevertStatusAndLog()
         {
             if(Status == Status.Fixed)
             {
-                base.RevertStatus();
+                base.RevertStatusAndLog();
                 Status = Status.Active;
             }
             else

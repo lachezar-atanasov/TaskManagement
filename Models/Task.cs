@@ -62,7 +62,7 @@ namespace TaskManagement.Models
         {
             _comments.Add(comment);
         }
-        public virtual void AdvanceStatus()
+        public virtual void AdvanceStatusAndLog()
         {
             string message = $"The status of item with ID {Id} changed from {Status} to {++Status}";
             AddLogWithAssignerIfPresent(message);
@@ -79,7 +79,7 @@ namespace TaskManagement.Models
                 ActivityHistory.AddEventLog(message, Assignee);
             }
         }
-        public virtual void RevertStatus()
+        public virtual void RevertStatusAndLog()
         {
             string message = $"The status of item with ID {Id} changed from {Status} to {--Status}";
             AddLogWithAssignerIfPresent(message);
@@ -87,6 +87,7 @@ namespace TaskManagement.Models
 
         public void AssignTo(IMember member)
         {
+            ActivityHistory.AddEventLog($"{GetType().Name} assigned to member '{member.Name}'");
             Assignee = member;
         }
         public ActivityHistory ActivityHistory { get; } = new();

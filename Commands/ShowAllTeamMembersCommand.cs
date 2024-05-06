@@ -22,8 +22,9 @@ namespace TaskManagement.Commands
         {
             CheckParametersCount(ExpectedParameters);
             string teamName = CommandParameters[0];
-            Repository.CheckTeamExists(teamName);
-            return $"List of all member names in team '{teamName}': {String.Join(' ',Repository.Members.Select(x=>x.Name).ToList())}";
+
+            var foundTeam = Repository.GetTeamIfExists(teamName);
+            return $"List of all member names in team '{teamName}': {String.Join(' ',foundTeam.Members.Select(x=>x.Name).ToList())}";
         }
     }
 }

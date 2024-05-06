@@ -10,7 +10,7 @@ namespace TaskManagement.Commands
 {
     public class ShowBoardActivityCommand : BaseCommand
     {
-        private const int ExpectedParameters = 1;
+        private const int ExpectedParameters = 2;
         public ShowBoardActivityCommand(IRepository repository)
             : base(repository)
         {
@@ -24,20 +24,17 @@ namespace TaskManagement.Commands
         {
             CheckParametersCount(ExpectedParameters);
             string boardName = CommandParameters[0];
-            Repository.CheckBoardExists(boardName);
+            string teamName = CommandParameters[1];
 
-            IBoard foundBoard = Repository.Teams.SelectMany(x => x.Boards).First(x => x.Name == boardName);
-            var boardTasksEvents = foundBoard.Tasks.SelectMany(x => x.ActivityHistory.LogEvents);
-            var totalBoardEvents = boardTasksEvents.Concat(foundBoard.ActivityHistory.LogEvents);
-            var eventLoggers = totalBoardEvents.ToList();
+            IBoard foundBoard = Repository.GetBoardIfExists(boardName, teamName);
 
-            if (!eventLoggers.Any())
+            if (!foundBoard.ActivityHistory.LogEvents.Any())
             {
                 throw new ArgumentException($"Board with name {boardName} have no logs yet! ");
             }
 
             return $"Board '{boardName}' activity history: {Environment.NewLine}" +
-                   $"{String.Join(Environment.NewLine, eventLoggers.OrderBy(x => x.Time))}";
+                   $"{String.Join(Environment.NewLine, foundBoard.ActivityHistory.LogEvents.OrderBy(x => x.Time))}";
         }
     }
 }

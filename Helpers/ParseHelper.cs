@@ -43,6 +43,15 @@ namespace TaskManagement.Helpers
             } 
             throw new InvalidUserInputException($"Invalid Severity input!");
         }
+        public static Size ParseSizeParameter(string enumString)
+        {
+            Size parsedEnum;
+            if (Enum.TryParse(enumString, out parsedEnum))
+            {
+                return parsedEnum;
+            }
+            throw new InvalidUserInputException($"Invalid Size input!");
+        }
         public static Priority ParsePriorityParameter(string enumString)
         {
             Priority parsedEnum;
