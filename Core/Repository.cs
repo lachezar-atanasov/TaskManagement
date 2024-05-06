@@ -114,5 +114,18 @@ namespace TaskManagement.Core
             var foundTeam = GetTeamIfExists(teamName);
             return foundTeam.Boards.First(x => x.Name == name);
         }
+
+        public ITask GetTaskById(int id)
+        {
+            List<ITask> totalTasksCollection = new();
+            totalTasksCollection = totalTasksCollection.Concat(_teams.SelectMany(x => x.Boards.SelectMany(y=>y.Tasks))).ToList();
+            totalTasksCollection = totalTasksCollection.Concat((_members).SelectMany(x => x.Tasks)).ToList();
+            var foundTask = totalTasksCollection.FirstOrDefault(x => x.Id == id);
+            if (foundTask == null)
+            {
+                throw new InvalidUserInputException($"Task with that id doesn't exists! ");
+            }
+            return foundTask;
+        }
     }
 }

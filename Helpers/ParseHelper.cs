@@ -52,6 +52,15 @@ namespace TaskManagement.Helpers
             }
             throw new InvalidUserInputException($"Invalid Size input!");
         }
+        public static Status ParseStatusParameter(string enumString)
+        {
+            Status parsedEnum;
+            if (Enum.TryParse(enumString, out parsedEnum))
+            {
+                return parsedEnum;
+            }
+            throw new InvalidUserInputException($"Invalid Status input!");
+        }
         public static Priority ParsePriorityParameter(string enumString)
         {
             Priority parsedEnum;

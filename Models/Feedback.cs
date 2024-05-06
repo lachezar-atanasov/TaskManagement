@@ -1,6 +1,7 @@
 ﻿using TaskManagement.Models.Enums;
 using System;
 using TaskManagement.Models.Contracts;
+using TaskManagement.Exceptions;
 
 namespace TaskManagement.Models
 {
@@ -15,46 +16,39 @@ namespace TaskManagement.Models
 
         public int Rating => _rating;
 
-        public override void AdvanceStatusAndLog()
+        public override void SetStatus(Status status)
         {
-            if (Status==Status.New)
+            if (status != Status.New && status != Status.Unscheduled && status != Status.Scheduled && status != Status.Done)
             {
-                Status=Status.Unscheduled;
+                throw new InvalidUserInputException($"Status {status} is not valid for Feedback!");
             }
-            if (Status == Status.Unscheduled)
+            if (Status == Status.New && status == Status.New)
             {
-                Status = Status.Scheduled;
+                string errorMessage = $"Status already at New";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new InvalidUserInputException(errorMessage);
             }
-            if (Status == Status.Scheduled)
+            if (Status == Status.Unscheduled && status == Status.Unscheduled)
             {
-                Status = Status.Done;
+                string errorMessage = $"Status already at Unscheduled";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new InvalidUserInputException(errorMessage);
             }
-            if (Status == Status.Done)
+            if (Status == Status.Scheduled && status == Status.Scheduled)
             {
-                throw new ArgumentException("Already at Done");
+                string errorMessage = $"Status already at Scheduled";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new InvalidUserInputException(errorMessage);
             }
-            base.AdvanceStatusAndLog();
-        }
+            if (Status == Status.Done && status == Status.Done)
+            {
+                string errorMessage = $"Status already at Done";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new InvalidUserInputException(errorMessage);
+            }
 
-        public override void RevertStatusAndLog()
-        {
-            if (Status == Status.New)
-            {
-                throw new ArgumentException("Already at New");
-            }
-            if (Status == Status.Unscheduled)
-            {
-                Status = Status.New;
-            }
-            if (Status == Status.Scheduled)
-            {
-                Status = Status.Unscheduled;
-            }
-            if (Status == Status.Done)
-            {
-                Status = Status.Scheduled;
-            }
-            base.RevertStatusAndLog();
+            ActivityHistory.AddEventLog($"Status is set to {status}");
+            Status = status;
         }
     }
 }

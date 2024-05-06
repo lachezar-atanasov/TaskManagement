@@ -2,7 +2,7 @@
 
 namespace TaskManagement.Models.Contracts
 {
-    public interface IPriority
+    public interface IPriorityAssignable
     {
         Priority Priority { get; }
         void SetPriority(Priority priority);

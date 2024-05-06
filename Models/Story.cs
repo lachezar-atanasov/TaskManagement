@@ -1,4 +1,5 @@
 ﻿using System;
+using TaskManagement.Exceptions;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
 
@@ -51,28 +52,33 @@ namespace TaskManagement.Models
             
         }
 
-        public override void AdvanceStatusAndLog()
+        public override void SetStatus(Status status)
         {
-            if(Status  == Status.Done)
+            if (status != Status.NotDone && status != Status.InProgress && status != Status.Done)
             {
-                string errorMessage = "Status already at Done";
-                AddLogWithAssignerIfPresent(errorMessage);
-                throw new ArgumentException(errorMessage);
+                throw new InvalidUserInputException($"Status {status} is not valid for Story!");
             }
-            base.AdvanceStatusAndLog();
-            Status += 1;
-        }
+            if (Status == Status.NotDone && status == Status.NotDone)
+            {
+                string errorMessage = $"Status already at NotDone";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new InvalidUserInputException(errorMessage);
+            }
+            if (Status == Status.InProgress && status == Status.InProgress)
+            {
+                string errorMessage = $"Status already at InProgress";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new InvalidUserInputException(errorMessage);
+            }
+            if (Status == Status.Done && status == Status.Done)
+            {
+                string errorMessage = $"Status already at Done";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new InvalidUserInputException(errorMessage);
+            }
 
-        public override void RevertStatusAndLog()
-        {
-            if(Status == Status.NotDone)
-            {
-                string errorMessage = "Status already Not Done";
-                AddLogWithAssignerIfPresent(errorMessage);
-                throw new ArgumentException(errorMessage);
-            }
-            base.RevertStatusAndLog();
-            Status -= 1;
+            ActivityHistory.AddEventLog($"Status is set to {status}");
+            Status = status;
         }
     }
 }

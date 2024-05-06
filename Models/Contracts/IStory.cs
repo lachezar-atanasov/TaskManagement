@@ -2,7 +2,7 @@
 
 namespace TaskManagement.Models.Contracts
 {
-    public interface IStory: ITask, IPriority
+    public interface IStory: ITask, IPriorityAssignable
     {
         Size Size { get; }
         void SetSize(Size size);

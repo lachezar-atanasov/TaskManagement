@@ -24,6 +24,7 @@ namespace TaskManagement.Core.Contracts
         IBoard GetBoardIfExists(string name, string teamName);
         IMember GetMemberIfExists(string name);
         void AddTeamIfNotExists(ITeam team);
+        ITask GetTaskById(int id);
         IBug CreateBug(string name, string description, Severity severity, Priority priority);
         IStory CreateStory(string name, string description, Priority priority, Size size);
         IFeedback CreateFeedback(string name, string description);

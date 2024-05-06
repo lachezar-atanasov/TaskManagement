@@ -10,14 +10,14 @@ using TaskManagement.Models.Enums;
 
 namespace TaskManagement.Commands
 {
-    public class ChangeBugPriority : BaseCommand
+    public class ChangeBugStatus : BaseCommand
     {
         private const int ExpectedParameters = 2;
-        public ChangeBugPriority(IRepository repository)
+        public ChangeBugStatus(IRepository repository)
             : base(repository)
         {
         }
-        public ChangeBugPriority(IList<string> commandParameters, IRepository repository)
+        public ChangeBugStatus(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }
@@ -26,7 +26,7 @@ namespace TaskManagement.Commands
         {
             CheckParametersCount(ExpectedParameters);
             int bugId = ParseHelper.ParseIntParameter(CommandParameters[0],"ID");
-            Priority newBugPriority = ParseHelper.ParsePriorityParameter(CommandParameters[1]);
+            Status newBugStatus = ParseHelper.ParseStatusParameter(CommandParameters[1]);
 
             var bugToChange = Repository.GetTaskById(bugId);
             if (bugToChange is not IBug bug)
@@ -34,8 +34,8 @@ namespace TaskManagement.Commands
                 throw new InvalidUserInputException($"Bug with id {bugId} is not bug! ");
             }
 
-            bug.SetPriority(newBugPriority);
-            return $"Bug with name {bug.Name} successfully changed priority to {newBugPriority}'!";
+            bug.SetStatus(newBugStatus);
+            return $"Bug with name {bug.Name} successfully changed priority to {newBugStatus}'!";
         }
     }
 }

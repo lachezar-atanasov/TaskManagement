@@ -3,15 +3,12 @@ using TaskManagement.Models.Enums;
 
 namespace TaskManagement.Models.Contracts
 {
-    public interface ITask: INameable, IAssignee, IHistoryable
+    public interface ITask: INameable, IAssignee, IHistoryable, IStatusAssignable
     {
         string Description { get; }
         public int Id {  get; }
-        Status Status { get; }
         List<IComment> Comments { get; } 
         void AddComment(Comment comment);
-        void AdvanceStatusAndLog();
-        void RevertStatusAndLog();
         void AssignTo(IMember member);
 
     }

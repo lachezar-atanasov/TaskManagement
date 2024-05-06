@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TaskManagement.Exceptions;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
 
@@ -20,20 +21,27 @@ namespace TaskManagement.Models
         public Severity Severity { get; private set; }
         public Priority Priority { get; private set; }
 
-        public override void AdvanceStatusAndLog()
+        public override void SetStatus(Status status)
         {
-            if(Status == Status.Active)
+            if (status!=Status.Active && status!=Status.Fixed)
             {
-                base.AdvanceStatusAndLog();
-                Status = Status.Fixed;
+                throw new InvalidUserInputException($"Status {status} is not valid for Bug!");
             }
-            else
+            if (Status == Status.Active && status == Status.Active)
+            {
+                string errorMessage = $"Status already at Active";
+                AddLogWithAssignerIfPresent(errorMessage);
+                throw new InvalidUserInputException(errorMessage);
+            }
+            if (Status == Status.Fixed && status == Status.Fixed)
             {
                 string errorMessage = $"Status already at Fixed";
                 AddLogWithAssignerIfPresent(errorMessage);
-                throw new ArgumentException(errorMessage);
+                throw new InvalidUserInputException(errorMessage);
             }
-           
+
+            ActivityHistory.AddEventLog($"Status is set to {status}");
+            Status = status;
         }
 
         public void SetPriority(Priority priority)
@@ -50,7 +58,7 @@ namespace TaskManagement.Models
             }
         }
 
-        public void ChangeSeverity(Severity severity)
+        public void SetSeverity(Severity severity)
         {
             if(Severity != severity)
             {
@@ -69,18 +77,6 @@ namespace TaskManagement.Models
         public void AddStep(string stepToAdd)
         {
             _steps.Add(stepToAdd);
-        }
-        public override void RevertStatusAndLog()
-        {
-            if(Status == Status.Fixed)
-            {
-                base.RevertStatusAndLog();
-                Status = Status.Active;
-            }
-            else
-            {
-                throw new ArgumentException("Status already at Active");
-            }
         }
     }
 }

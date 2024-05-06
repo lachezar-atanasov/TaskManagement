@@ -50,6 +50,8 @@ namespace TaskManagement.Models
         }
         public int Id { get; }
         public Status Status { get; protected set; }
+        public abstract void SetStatus(Status status);
+
         public List<IComment> Comments
         {
             get
@@ -61,11 +63,6 @@ namespace TaskManagement.Models
         public void AddComment(Comment comment)
         {
             _comments.Add(comment);
-        }
-        public virtual void AdvanceStatusAndLog()
-        {
-            string message = $"The status of item with ID {Id} changed from {Status} to {++Status}";
-            AddLogWithAssignerIfPresent(message);
         }
 
         public void AddLogWithAssignerIfPresent(string message)
@@ -79,12 +76,6 @@ namespace TaskManagement.Models
                 ActivityHistory.AddEventLog(message, Assignee);
             }
         }
-        public virtual void RevertStatusAndLog()
-        {
-            string message = $"The status of item with ID {Id} changed from {Status} to {--Status}";
-            AddLogWithAssignerIfPresent(message);
-        }
-
         public void AssignTo(IMember member)
         {
             ActivityHistory.AddEventLog($"{GetType().Name} assigned to member '{member.Name}'");
