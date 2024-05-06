@@ -49,20 +49,30 @@ namespace TaskManagement.Core
                     return new ChangeBugSeverity(commandParams, _repository);
                 case CommandType.ChangeBugStatus:
                     return new ChangeBugStatus(commandParams, _repository);
+                case CommandType.ChangeFeedbackRating:
+                    return new ChangeFeedbackRating(commandParams, _repository);
+                case CommandType.ChangeFeedbackStatus:
+                    return new ChangeFeedbackStatus(commandParams, _repository);
+                case CommandType.ChangeStoryPriority:
+                    return new ChangeStoryPriority(commandParams, _repository);
+                case CommandType.ChangeStorySize:
+                    return new ChangeStorySize(commandParams, _repository);
+                case CommandType.ChangeStoryStatus:
+                    return new ChangeStoryStatus(commandParams, _repository);
                 case CommandType.ListAllTasks:
                     return new ListAllTasks(commandParams, _repository);
-                case CommandType.ChangeStoryDetail:
-                    throw new NotImplementedException();
-                case CommandType.ChangeFeedbackDetail:
-                    throw new NotImplementedException();
-                case CommandType.AssignTaskToPerson:
-                    throw new NotImplementedException();
-                case CommandType.UnassignTaskToPerson:
-                    throw new NotImplementedException();
-                case CommandType.ListSubTask:
-                    throw new NotImplementedException();
-                case CommandType.ListTasksWithAsignee:
-                    throw new NotImplementedException();
+                case CommandType.AssignTaskToMember:
+                    return new AssignTaskToMember(commandParams, _repository);
+                case CommandType.UnassignTaskFromMember:
+                    return new UnassignTaskFromMember(commandParams, _repository);
+                case CommandType.ListTasksWithAssignee:
+                    return new ListTasksWithAssignee(commandParams, _repository);
+                case CommandType.ListBugs:
+                    return new ListBugs(commandParams, _repository);
+                case CommandType.ListFeedbacks:
+                    return new ListFeedbacks(commandParams, _repository);
+                case CommandType.ListStories:
+                    return new ListStories(commandParams, _repository);
                 default:
                     throw new InvalidOperationException("No such command");
             }

@@ -2,6 +2,7 @@
 using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
 using System.Linq;
+using TaskManagement.Commands.Enums;
 using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
 using TaskManagement.Models;
@@ -24,7 +25,8 @@ namespace TaskManagement.Commands
 
         protected override string ExecuteCommand()
         {
-            CheckParametersCount(ExpectedParameters);
+            CheckParametersCount(ExpectedParameters, $"{CommandType.ChangeBugStatus} 'bugId' " +
+                                                     $"'newStatus({Status.Active},{Status.Fixed})'");
             int bugId = ParseHelper.ParseIntParameter(CommandParameters[0],"ID");
             Status newBugStatus = ParseHelper.ParseStatusParameter(CommandParameters[1]);
 

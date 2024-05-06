@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
@@ -20,9 +21,8 @@ namespace TaskManagement.Models
         private readonly string _description;
         private readonly List<IComment> _comments = new();
         private static int _globalId = 0;
-        private readonly List<EventLogger> _logEvents = new();
 
-        public Task(string name, string description,Status status)
+        protected Task(string name, string description, Status status)
         {
             Id = _globalId;
             Status = status;
@@ -82,6 +82,17 @@ namespace TaskManagement.Models
             ActivityHistory.AddEventLog($"{GetType().Name} assigned to member '{member.Name}'");
             Assignee = member;
         }
+        public void Unassign()
+        {
+            if (Assignee == null)
+            {
+                string errorMessage = $"Task with id {Id} has no assignee yet! ";
+                ActivityHistory.AddEventLog(errorMessage);
+                throw new InvalidUserInputException(errorMessage);
+            }
+            ActivityHistory.AddEventLog($"{GetType().Name} unassigned from member '{Assignee.Name}'");
+            Assignee = null;
+        }
 
         public override string ToString()
         {
@@ -96,7 +107,6 @@ namespace TaskManagement.Models
         }
         public abstract string AdditionalInfo();
         public ActivityHistory ActivityHistory { get; } = new();
-
         public IMember? Assignee { get; private set; }
     }
 }

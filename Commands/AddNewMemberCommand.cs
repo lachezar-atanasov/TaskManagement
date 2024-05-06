@@ -1,5 +1,6 @@
 ﻿using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
+using TaskManagement.Commands.Enums;
 
 namespace TaskManagement.Commands
 {
@@ -18,7 +19,7 @@ namespace TaskManagement.Commands
 
         protected override string ExecuteCommand()
         {
-            CheckParametersCount(ExpectedParameters);
+            CheckParametersCount(ExpectedParameters,$"{CommandType.AddMember} 'memberName'");
 
             string name = CommandParameters[0];
 

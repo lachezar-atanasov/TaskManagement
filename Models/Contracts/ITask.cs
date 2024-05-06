@@ -10,6 +10,7 @@ namespace TaskManagement.Models.Contracts
         List<IComment> Comments { get; } 
         void AddComment(Comment comment);
         void AssignTo(IMember member);
+        void Unassign();
 
     }
 }

@@ -2,6 +2,7 @@
 using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
 using System.Linq;
+using TaskManagement.Commands.Enums;
 using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
 using TaskManagement.Models;
@@ -24,7 +25,7 @@ namespace TaskManagement.Commands
 
         protected override string ExecuteCommand()
         {
-            CheckParametersCount(ExpectedParameters);
+            CheckParametersCount(ExpectedParameters,$"{CommandType.ChangeBugPriority} 'bugId' 'newPriority'");
             int bugId = ParseHelper.ParseIntParameter(CommandParameters[0],"ID");
             Priority newBugPriority = ParseHelper.ParsePriorityParameter(CommandParameters[1]);
 

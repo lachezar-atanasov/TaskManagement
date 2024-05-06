@@ -16,6 +16,11 @@ namespace TaskManagement.Models
         }
 
         public int Rating => _rating;
+        public void SetRating(int newRating)
+        {
+            _rating=newRating;
+        }
+
         public override void SetStatus(Status status)
         {
             if (status != Status.New && status != Status.Unscheduled && status != Status.Scheduled && status != Status.Done)

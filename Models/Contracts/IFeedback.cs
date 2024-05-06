@@ -3,5 +3,6 @@
     public interface IFeedback : ITask
     {
         int Rating { get; }
+        void SetRating(int newRating);
     }
 }

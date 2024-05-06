@@ -19,13 +19,18 @@ namespace TaskManagement.Commands.Enums
         ChangeBugPriority,
         ChangeBugSeverity,
         ChangeBugStatus,
-        ChangeStoryDetail,
-        ChangeFeedbackDetail,
-        AssignTaskToPerson,
-        UnassignTaskToPerson,
+        ChangeStoryStatus,
+        ChangeStorySize,
+        ChangeStoryPriority,
+        ChangeFeedbackRating,
+        ChangeFeedbackStatus,
+        AssignTaskToMember,
+        UnassignTaskFromMember,
         ListAllTasks,
-        ListSubTask,
-        ListTasksWithAsignee
+        ListTasksWithAssignee,
+        ListBugs,
+        ListStories,
+        ListFeedbacks
 
     }
 }
