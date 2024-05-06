@@ -30,6 +30,13 @@ namespace TaskManagement.Core
         {
             return new Team(name);
         }
+
+        public IComment CreateComment(string author, string message)
+        {
+            IComment comment = new Comment(author,message);
+            return comment;
+        }
+
         public void AddMemberIfNotExists(IMember member)
         {
             if (MemberExists(member.Name))

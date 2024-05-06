@@ -13,6 +13,7 @@ namespace TaskManagement.Core.Contracts
         IMember CreateMember(string name);
         IBoard CreateBoard(string name);
         ITeam CreateTeam(string name);
+        IComment CreateComment(string author,string message);
         void AddMemberIfNotExists(IMember member);
         void CheckMemberExists(string memberName);
         void CheckBoardExists(string boardName, string teamName);

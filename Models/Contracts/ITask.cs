@@ -8,7 +8,7 @@ namespace TaskManagement.Models.Contracts
         string Description { get; }
         public int Id {  get; }
         List<IComment> Comments { get; } 
-        void AddComment(Comment comment);
+        void AddComment(IComment comment);
         void AssignTo(IMember member);
         void Unassign();
 

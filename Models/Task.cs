@@ -61,7 +61,7 @@ namespace TaskManagement.Models
                 return copy;
             }
         }
-        public void AddComment(Comment comment)
+        public void AddComment(IComment comment)
         {
             _comments.Add(comment);
         }

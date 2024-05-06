@@ -6,8 +6,13 @@ namespace TaskManagement.Models
 {
     public class Comment : IComment
     {
-        public string Author => throw new NotImplementedException();
+        public Comment(string author, string message)
+        {
+            Author = author;
+            Message = message;
+        }
 
-        public string Message => throw new NotImplementedException();
+        public string Author { get; }
+        public string Message { get; }
     }
 }

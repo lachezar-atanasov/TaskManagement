@@ -30,7 +30,8 @@ namespace TaskManagement.Commands.Enums
         ListTasksWithAssignee,
         ListBugs,
         ListStories,
-        ListFeedbacks
+        ListFeedbacks,
+        AddCommentToTask
 
     }
 }

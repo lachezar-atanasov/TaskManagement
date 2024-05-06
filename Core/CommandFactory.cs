@@ -73,6 +73,8 @@ namespace TaskManagement.Core
                     return new ListFeedbacks(commandParams, _repository);
                 case CommandType.ListStories:
                     return new ListStories(commandParams, _repository);
+                case CommandType.AddCommentToTask:
+                    return new AddCommentToTask(commandParams, _repository);
                 default:
                     throw new InvalidOperationException("No such command");
             }
