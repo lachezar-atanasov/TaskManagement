@@ -28,7 +28,7 @@ namespace TaskManagement.Commands
             Repository.CheckMemberExists(memberName);
 
             IMember foundMember = Repository.Members.First(x => x.Name == memberName);
-            if (foundMember.ActivityHistory.LogEvents.All(x => x.Assigner?.Name != memberName))
+            if (foundMember.ActivityHistory.LogEvents.Count == 0 && foundMember.ActivityHistory.LogEvents.All(x => x.Assigner?.Name != memberName))
             {
                 throw new ArgumentException($"Member with name {memberName} have no logs yet! ");
             }
