@@ -43,8 +43,14 @@ namespace TaskManagement.Core
                     return new CreateNewBoardInTeamCommand(commandParams, _repository);
                 case CommandType.CreateNewBugInBoard:
                     return new CreateNewBugInBoard(commandParams, _repository);
-                case CommandType.ChangeBugDetail:
-                    throw new NotImplementedException();
+                case CommandType.ChangeBugPriority:
+                    return new ChangeBugPriority(commandParams, _repository);
+                case CommandType.ChangeBugSeverity:
+                    return new ChangeBugSeverity(commandParams, _repository);
+                case CommandType.ChangeBugStatus:
+                    return new ChangeBugStatus(commandParams, _repository);
+                case CommandType.ListAllTasks:
+                    return new ListAllTasks(commandParams, _repository);
                 case CommandType.ChangeStoryDetail:
                     throw new NotImplementedException();
                 case CommandType.ChangeFeedbackDetail:

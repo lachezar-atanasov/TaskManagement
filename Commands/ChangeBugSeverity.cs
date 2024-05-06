@@ -31,7 +31,7 @@ namespace TaskManagement.Commands
             var bugToChange = Repository.GetTaskById(bugId);
             if (bugToChange is not IBug bug)
             {
-                throw new InvalidUserInputException($"Bug with id {bugId} is not bug! ");
+                throw new InvalidUserInputException($"Task with id {bugId} is not bug! ");
             }
 
             bug.SetSeverity(newBugSeverity);

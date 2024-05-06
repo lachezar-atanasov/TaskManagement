@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using TaskManagement.Exceptions;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
@@ -42,6 +43,11 @@ namespace TaskManagement.Models
 
             ActivityHistory.AddEventLog($"Status is set to {status}");
             Status = status;
+        }
+
+        public override string AdditionalInfo()
+        {
+            return $", Severity: { Severity}, Priority: { Priority}";
         }
 
         public void SetPriority(Priority priority)

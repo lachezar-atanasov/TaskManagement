@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using TaskManagement.Exceptions;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
@@ -50,6 +51,10 @@ namespace TaskManagement.Models
                 throw new ArgumentException(errorMessage);
             }
             
+        }
+        public override string AdditionalInfo()
+        {
+            return $", Priority: {Priority}, Size: {Size}";
         }
 
         public override void SetStatus(Status status)

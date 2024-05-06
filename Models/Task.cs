@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using TaskManagement.Helpers;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
@@ -81,6 +82,19 @@ namespace TaskManagement.Models
             ActivityHistory.AddEventLog($"{GetType().Name} assigned to member '{member.Name}'");
             Assignee = member;
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            string? assignee = Assignee?.Name;
+            if (assignee != null)
+            {
+                assignee = ", Assignee: " + assignee;
+            }
+            sb.AppendLine($"ID: {Id}, Title of ({GetType().Name}): {Name}, Status: {Status}{AdditionalInfo()}{assignee}");
+            return sb.ToString();
+        }
+        public abstract string AdditionalInfo();
         public ActivityHistory ActivityHistory { get; } = new();
 
         public IMember? Assignee { get; private set; }

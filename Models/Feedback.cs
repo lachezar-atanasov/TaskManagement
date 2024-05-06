@@ -2,6 +2,7 @@
 using System;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Exceptions;
+using System.Text;
 
 namespace TaskManagement.Models
 {
@@ -15,7 +16,6 @@ namespace TaskManagement.Models
         }
 
         public int Rating => _rating;
-
         public override void SetStatus(Status status)
         {
             if (status != Status.New && status != Status.Unscheduled && status != Status.Scheduled && status != Status.Done)
@@ -49,6 +49,11 @@ namespace TaskManagement.Models
 
             ActivityHistory.AddEventLog($"Status is set to {status}");
             Status = status;
+        }
+
+        public override string AdditionalInfo()
+        {
+            return $"";
         }
     }
 }

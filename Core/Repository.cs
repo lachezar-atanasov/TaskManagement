@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.Metrics;
 using System.Globalization;
 using System.Linq;
@@ -31,7 +32,10 @@ namespace TaskManagement.Core
         }
         public void AddMemberIfNotExists(IMember member)
         {
-            CheckMemberExists(member.Name);
+            if (MemberExists(member.Name))
+            {
+                throw new DuplicateNameException("Member with that name already exists! ");
+            }
             _members.Add(member);
         }
 
@@ -43,7 +47,10 @@ namespace TaskManagement.Core
 
         public void AddTeamIfNotExists(ITeam team)
         {
-            CheckTeamExists(team.Name);
+            if (TeamExists(team.Name))
+            {
+                throw new DuplicateNameException("Team with that name already exists! ");
+            }
             _teams.Add(team);
         }
         public IBug CreateBug(string name, string description, Severity severity, Priority priority)

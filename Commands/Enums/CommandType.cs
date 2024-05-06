@@ -16,12 +16,14 @@ namespace TaskManagement.Commands.Enums
         CreateNewBoardInTeam,
         ShowAllTeamBoards,
         CreateNewBugInBoard,
-        ChangeBugDetail,
+        ChangeBugPriority,
+        ChangeBugSeverity,
+        ChangeBugStatus,
         ChangeStoryDetail,
         ChangeFeedbackDetail,
         AssignTaskToPerson,
         UnassignTaskToPerson,
-        ListTasks,
+        ListAllTasks,
         ListSubTask,
         ListTasksWithAsignee
 
