@@ -1,6 +1,9 @@
 ﻿using TaskManagement.Commands.Contracts;
 using TaskManagement.Core.Contracts;
 using System;
+using System.Linq;
+using TaskManagement.Commands;
+using TaskManagement.Commands.Enums;
 using TaskManagement.Exceptions;
 
 namespace TaskManagement.Core
@@ -37,15 +40,26 @@ namespace TaskManagement.Core
 
                     ICommand command = _commandFactory.Create(inputLine);
                     string result = command.Execute();
-                    Console.WriteLine();
-                    Console.WriteLine(result.Trim());
-                    Console.WriteLine();
+
+                    // | in the start of each line
+                    string[] lines = result.Split(Environment.NewLine);
+                    string formattedResult = string.Join(Environment.NewLine, Array.ConvertAll(lines, line => $"| {line.Trim()}"));
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine(formattedResult.Trim());
+                    Console.ResetColor();
                 }
                 catch (Exception ex)
                 {
                     if (!string.IsNullOrEmpty(ex.Message))
                     {
-                        Console.WriteLine(ex.Message);
+                        string message = ex.Message;
+                        // | in the start of each line
+                        string[] lines = message.Split(Environment.NewLine);
+                        string formattedResult = string.Join(Environment.NewLine, Array.ConvertAll(lines, line => $"| {line.Trim()}"));
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(formattedResult);
+                        Console.ResetColor();
                     }
                     else
                     {

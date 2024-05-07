@@ -23,6 +23,8 @@ namespace TaskManagement.Core
 
             switch(commandType)
             {
+                case CommandType.Help:
+                    return new HelpCommand(commandParams, _repository);
                 case CommandType.AddMember:
                     return new AddNewMemberCommand(commandParams, _repository);
                 case CommandType.ShowAllMembers:
