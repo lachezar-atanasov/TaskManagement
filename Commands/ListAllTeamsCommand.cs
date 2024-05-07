@@ -5,15 +5,15 @@ using System.Linq;
 
 namespace TaskManagement.Commands
 {
-    public class ShowAllMembersCommand : BaseCommand
+    public class ListAllTeamsCommand : BaseCommand
     {
         private const int ExpectedParameters = 0;
-        public ShowAllMembersCommand(IRepository repository)
+        public ListAllTeamsCommand(IRepository repository)
             : base(repository)
         {
         }
 
-        public ShowAllMembersCommand(IList<string> commandParameters, IRepository repository)
+        public ListAllTeamsCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }
@@ -21,7 +21,12 @@ namespace TaskManagement.Commands
         protected override string ExecuteCommand()
         {
             CheckParametersCount(ExpectedParameters);
-            return $"List of all members: {String.Join(' ',Repository.Members.Select(x=>x.Name).ToList())}";
+            var teams = Repository.Teams.Select(x => x.Name).ToList();
+            if (teams.Count == 0)
+            {
+                return $"There is no teams yet! ";
+            }
+            return $"List of all teams: {String.Join(' ', teams)}";
         }
     }
 }

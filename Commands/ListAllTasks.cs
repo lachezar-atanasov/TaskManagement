@@ -32,6 +32,11 @@ namespace TaskManagement.Commands
                 var filterTitle = CommandParameters[0];
                 orderedTasksAndFiltered = orderedTasksAndFiltered.Where(x => x.Name.Contains(filterTitle)).ToList();
             }
+
+            if (orderedTasksAndFiltered.Count==0)
+            {
+                return ($"No tasks yet! ");
+            }
             
             return $"{string.Join(Environment.NewLine, orderedTasksAndFiltered)}";
         }

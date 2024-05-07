@@ -27,24 +27,24 @@ namespace TaskManagement.Core
                     return new HelpCommand(commandParams, _repository);
                 case CommandType.AddMember:
                     return new AddNewMemberCommand(commandParams, _repository);
-                case CommandType.ShowAllMembers:
-                    return new ShowAllMembersCommand(commandParams, _repository);
-                case CommandType.ShowAllTeamBoards:
-                    return new ShowAllTeamBoardsCommand(commandParams, _repository);
+                case CommandType.ListAllMembers:
+                    return new ListAllMembersCommand(commandParams, _repository);
+                case CommandType.ListAllTeamBoards:
+                    return new ListAllTeamBoardsCommand(commandParams, _repository);
                 case CommandType.ShowMemberActivity:
                     return new ShowMemberActivityCommand(commandParams, _repository);
                 case CommandType.ShowBoardActivity:
                     return new ShowBoardActivityCommand(commandParams, _repository);
                 case CommandType.CreateTeam:
                     return new CreateTeamCommand(commandParams, _repository);
-                case CommandType.ShowAllTeams:
-                    return new ShowAllTeamsCommand(commandParams, _repository);
+                case CommandType.ListAllTeams:
+                    return new ListAllTeamsCommand(commandParams, _repository);
                 case CommandType.ShowTeamActivity:
                     return new ShowTeamActivityCommand(commandParams, _repository);
                 case CommandType.AddMemberToTeam:
                     return new AddMemberToTeamCommand(commandParams, _repository);
-                case CommandType.ShowAllTeamMembers:
-                    return new ShowAllTeamMembersCommand(commandParams, _repository);
+                case CommandType.ListAllTeamMembers:
+                    return new ListAllTeamMembersCommand(commandParams, _repository);
                 case CommandType.CreateNewBoardInTeam:
                     return new CreateNewBoardInTeamCommand(commandParams, _repository);
                 case CommandType.CreateNewBugInBoard:
