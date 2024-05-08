@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using TaskManagement.Core.Contracts;
@@ -135,7 +134,7 @@ namespace TaskManagement.Core
             var foundTask = totalTasksCollection.FirstOrDefault(x => x.Id == id);
             if (foundTask == null)
             {
-                throw new InvalidUserInputException($"Task with that id doesn't exists! ");
+                throw new InvalidUserInputException("Task with that id doesn't exists! ");
             }
             return foundTask;
         }

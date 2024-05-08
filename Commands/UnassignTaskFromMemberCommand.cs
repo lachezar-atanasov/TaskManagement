@@ -22,7 +22,6 @@ namespace TaskManagement.Commands
         {
             CheckParametersCount(ExpectedParameters,$"{CommandType.UnassignTaskFromMember} 'taskId'");
             int taskId = ParseHelper.ParseIntParameter(CommandParameters[0],"ID");
-            string memberName = CommandParameters[1];
 
             var foundTask = Repository.GetTaskById(taskId);
             string? currentAssignee = foundTask.Assignee?.Name;

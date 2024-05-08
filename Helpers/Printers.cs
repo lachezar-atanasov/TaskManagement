@@ -11,7 +11,7 @@ namespace TaskManagement.Helpers
 
             // | in the start of each line
             string[] lines = message.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-            const string rightSyntax = $"Right command syntax:";
+            const string rightSyntax = "Right command syntax:";
 
             foreach (string line in lines)
             {

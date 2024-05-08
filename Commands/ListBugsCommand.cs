@@ -57,7 +57,7 @@ namespace TaskManagement.Commands
             }
             if (orderedAndFilteredBugs.Count == 0)
             {
-                return $"No bugs with that filter! ";
+                return "No bugs with that filter! ";
             }
             return $"{string.Join(Environment.NewLine, orderedAndFilteredBugs)}";
         }

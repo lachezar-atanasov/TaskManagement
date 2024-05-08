@@ -29,13 +29,13 @@ namespace TaskManagement.Models
             }
             if (Status == Status.Active && status == Status.Active)
             {
-                string errorMessage = $"Status already at Active";
+                string errorMessage = "Status already at Active";
                 AddLogWithAssignerIfPresent(errorMessage);
                 throw new InvalidUserInputException(errorMessage);
             }
             if (Status == Status.Fixed && status == Status.Fixed)
             {
-                string errorMessage = $"Status already at Fixed";
+                string errorMessage = "Status already at Fixed";
                 AddLogWithAssignerIfPresent(errorMessage);
                 throw new InvalidUserInputException(errorMessage);
             }

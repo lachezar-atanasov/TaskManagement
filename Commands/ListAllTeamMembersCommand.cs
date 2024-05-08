@@ -1,5 +1,4 @@
-﻿using System;
-using TaskManagement.Core.Contracts;
+﻿using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using TaskManagement.Commands.Enums;
@@ -31,7 +30,7 @@ namespace TaskManagement.Commands
             {
                 return $"Team '{teamName} has no members yet! '";
             }
-            return $"List of all member names in team '{teamName}': {String.Join(' ', teamMembers)}";
+            return $"List of all member names in team '{teamName}': {string.Join(' ', teamMembers)}";
         }
     }
 }

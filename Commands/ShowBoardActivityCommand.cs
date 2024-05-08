@@ -34,7 +34,7 @@ namespace TaskManagement.Commands
             }
 
             return $"Board '{boardName}' activity history: {Environment.NewLine}" +
-                   $"{String.Join(Environment.NewLine, foundBoard.ActivityHistory.LogEvents.OrderBy(x => x.Time))}";
+                   $"{string.Join(Environment.NewLine, foundBoard.ActivityHistory.LogEvents.OrderBy(x => x.Time))}";
         }
     }
 }

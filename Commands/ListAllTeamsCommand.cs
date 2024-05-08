@@ -1,5 +1,4 @@
-﻿using System;
-using TaskManagement.Core.Contracts;
+﻿using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using TaskManagement.Commands.Abstract;
@@ -25,9 +24,9 @@ namespace TaskManagement.Commands
             var teams = Repository.Teams.Select(x => x.Name).ToList();
             if (teams.Count == 0)
             {
-                return $"There is no teams yet! ";
+                return "There is no teams yet! ";
             }
-            return $"List of all teams: {String.Join(' ', teams)}";
+            return $"List of all teams: {string.Join(' ', teams)}";
         }
     }
 }

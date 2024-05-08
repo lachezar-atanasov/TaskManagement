@@ -4,8 +4,6 @@ using TaskManagement.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using TaskManagement.Commands;
-using static System.Net.Mime.MediaTypeNames;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -19,7 +17,7 @@ namespace TaskManagement.Core
             _repository = repository;
         }
 
-        public ICommand Create(string? commandLine)
+        public ICommand Create(string commandLine)
         {
             string[] arguments = Regex.Split(commandLine, @"\s(?=(?:[^""]*""[^""]*"")*[^""]*$)");
             arguments = arguments.Select(x => x.Trim('"')).ToArray();
@@ -103,7 +101,7 @@ namespace TaskManagement.Core
             return result;
         }
 
-        private List<String> ExtractCommandParameters(string[] arguments)
+        private List<string> ExtractCommandParameters(string[] arguments)
         {
             List<string> commandParameters = new();
 

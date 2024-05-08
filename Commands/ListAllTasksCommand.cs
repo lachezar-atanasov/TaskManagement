@@ -33,7 +33,7 @@ namespace TaskManagement.Commands
 
             if (orderedTasksAndFiltered.Count==0)
             {
-                return ($"No tasks yet! ");
+                return ("No tasks yet! ");
             }
             
             return $"{string.Join(Environment.NewLine, orderedTasksAndFiltered)}";

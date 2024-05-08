@@ -27,25 +27,25 @@ namespace TaskManagement.Models
             }
             if (Status == Status.New && status == Status.New)
             {
-                string errorMessage = $"Status already at New";
+                string errorMessage = "Status already at New";
                 AddLogWithAssignerIfPresent(errorMessage);
                 throw new InvalidUserInputException(errorMessage);
             }
             if (Status == Status.Unscheduled && status == Status.Unscheduled)
             {
-                string errorMessage = $"Status already at Unscheduled";
+                string errorMessage = "Status already at Unscheduled";
                 AddLogWithAssignerIfPresent(errorMessage);
                 throw new InvalidUserInputException(errorMessage);
             }
             if (Status == Status.Scheduled && status == Status.Scheduled)
             {
-                string errorMessage = $"Status already at Scheduled";
+                string errorMessage = "Status already at Scheduled";
                 AddLogWithAssignerIfPresent(errorMessage);
                 throw new InvalidUserInputException(errorMessage);
             }
             if (Status == Status.Done && status == Status.Done)
             {
-                string errorMessage = $"Status already at Done";
+                string errorMessage = "Status already at Done";
                 AddLogWithAssignerIfPresent(errorMessage);
                 throw new InvalidUserInputException(errorMessage);
             }
@@ -56,7 +56,7 @@ namespace TaskManagement.Models
 
         public override string AdditionalInfo()
         {
-            return $"";
+            return "";
         }
     }
 }

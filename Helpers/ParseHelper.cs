@@ -41,7 +41,7 @@ namespace TaskManagement.Helpers
             {
                 return parsedEnum;
             } 
-            throw new InvalidUserInputException($"Invalid Severity input!");
+            throw new InvalidUserInputException("Invalid Severity input!");
         }
         public static Size ParseSizeParameter(string enumString)
         {
@@ -50,7 +50,7 @@ namespace TaskManagement.Helpers
             {
                 return parsedEnum;
             }
-            throw new InvalidUserInputException($"Invalid Size input!");
+            throw new InvalidUserInputException("Invalid Size input!");
         }
         public static Status ParseStatusParameter(string enumString)
         {
@@ -59,7 +59,7 @@ namespace TaskManagement.Helpers
             {
                 return parsedEnum;
             }
-            throw new InvalidUserInputException($"Invalid Status input!");
+            throw new InvalidUserInputException("Invalid Status input!");
         }
         public static Priority ParsePriorityParameter(string enumString)
         {
@@ -68,7 +68,7 @@ namespace TaskManagement.Helpers
             {
                 return parsedEnum;
             }
-            throw new InvalidUserInputException($"Invalid Priority input!");
+            throw new InvalidUserInputException("Invalid Priority input!");
         }
     }
 }

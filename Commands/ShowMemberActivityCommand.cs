@@ -35,7 +35,7 @@ namespace TaskManagement.Commands
                 throw new ArgumentException($"Member with name {memberName} have no logs yet! ");
             }
             return $"Member '{memberName}': {Environment.NewLine}" +
-                   $"{String.Join(Environment.NewLine, totalMemberActivityHistory.OrderBy(x => x.Time))}";
+                   $"{string.Join(Environment.NewLine, totalMemberActivityHistory.OrderBy(x => x.Time))}";
         }
     }
 }

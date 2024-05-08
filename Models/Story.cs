@@ -64,19 +64,19 @@ namespace TaskManagement.Models
             }
             if (Status == Status.NotDone && status == Status.NotDone)
             {
-                string errorMessage = $"Status already at NotDone";
+                string errorMessage = "Status already at NotDone";
                 AddLogWithAssignerIfPresent(errorMessage);
                 throw new InvalidUserInputException(errorMessage);
             }
             if (Status == Status.InProgress && status == Status.InProgress)
             {
-                string errorMessage = $"Status already at InProgress";
+                string errorMessage = "Status already at InProgress";
                 AddLogWithAssignerIfPresent(errorMessage);
                 throw new InvalidUserInputException(errorMessage);
             }
             if (Status == Status.Done && status == Status.Done)
             {
-                string errorMessage = $"Status already at Done";
+                string errorMessage = "Status already at Done";
                 AddLogWithAssignerIfPresent(errorMessage);
                 throw new InvalidUserInputException(errorMessage);
             }

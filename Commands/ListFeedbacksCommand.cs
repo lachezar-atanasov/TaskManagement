@@ -54,7 +54,7 @@ namespace TaskManagement.Commands
             }
             if (orderedAndFilteredFeedbacks.Count == 0)
             {
-                return $"No Feedbacks with that filter! ";
+                return "No Feedbacks with that filter! ";
             }
             return $"{string.Join(Environment.NewLine, orderedAndFilteredFeedbacks)}";
         }

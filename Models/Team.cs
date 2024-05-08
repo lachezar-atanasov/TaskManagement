@@ -7,7 +7,7 @@ namespace TaskManagement.Models
 {
     public class Team:ITeam
     {
-        private string _name;
+        private readonly string _name;
         private const int NameMinLength = 5;
         private const int NameMaxLength = 15;
         private readonly string _invalidNameErrorMessage = $"The name must be a string between {NameMinLength} and {NameMaxLength} symbols.";
@@ -17,13 +17,13 @@ namespace TaskManagement.Models
         public Team(string name)
         {
             Name = name;
-            ActivityHistory.AddEventLog($"Team was created! ");
+            ActivityHistory.AddEventLog("Team was created! ");
         }
 
         public string Name
         {
             get => _name;
-            private set
+            private init
             {
                 Validators.ValidateIntRange(value.Length,NameMinLength,NameMaxLength,_invalidNameErrorMessage);
                 _name = value;

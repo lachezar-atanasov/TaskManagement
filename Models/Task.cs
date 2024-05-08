@@ -20,7 +20,7 @@ namespace TaskManagement.Models
         private readonly string _name;
         private readonly string _description;
         private readonly List<IComment> _comments = new();
-        private static int _globalId = 0;
+        private static int _globalId;
 
         protected Task(string name, string description, Status status)
         {

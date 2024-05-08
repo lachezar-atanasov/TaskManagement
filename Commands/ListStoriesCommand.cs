@@ -57,7 +57,7 @@ namespace TaskManagement.Commands
             }
             if (orderedAndFilteredStories.Count == 0)
             {
-                return $"No stories with that filter! ";
+                return "No stories with that filter! ";
             }
             return $"{string.Join(Environment.NewLine, orderedAndFilteredStories)}";
         }
