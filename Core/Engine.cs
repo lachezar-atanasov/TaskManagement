@@ -1,6 +1,8 @@
 ﻿using TaskManagement.Commands.Contracts;
 using TaskManagement.Core.Contracts;
 using System;
+using System.Linq;
+using TaskManagement.Commands.Enums;
 using TaskManagement.Exceptions;
 
 namespace TaskManagement.Core
@@ -52,10 +54,43 @@ namespace TaskManagement.Core
                     {
                         string message = ex.Message;
                         // | in the start of each line
-                        string[] lines = message.Split(Environment.NewLine);
-                        string formattedResult = string.Join(Environment.NewLine, Array.ConvertAll(lines, line => $"| {line.Trim()}"));
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(formattedResult);
+                        string[] lines = message.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                        const string RightSyntax = $"Right command syntax:";
+
+                        foreach (string line in lines)
+                        {
+                            if (line.Contains(RightSyntax))
+                            {
+                                int index = line.IndexOf(RightSyntax, StringComparison.Ordinal);
+                                string leftPart = line.Substring(0, index+RightSyntax.Length);
+                                string rightPart = line.Substring(index+RightSyntax.Length);
+
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write(leftPart);
+
+                                
+                                foreach (string word in rightPart.Split(' '))
+                                {
+                                    if (Enum.GetNames(typeof(CommandType)).ToList().Contains(word))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Gray;
+                                        Console.Write(word + " ");
+                                    }
+                                    else
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        Console.Write(word + " ");
+                                    }
+                                }
+
+                                Console.WriteLine();
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine($"| {line.Trim()}");
+                            }
+                        }
                         Console.ResetColor();
                     }
                     else
