@@ -96,7 +96,7 @@ namespace TaskManagement.Core
             bool result = false;
             foreach (var member in _members)
             {
-                if (member.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
+                if (member.Name.Equals(name))
                 {
                     result = true;
                     break;
@@ -106,12 +106,12 @@ namespace TaskManagement.Core
         }
         public bool TeamExists(string name)
         {
-            return _teams.Any(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+            return _teams.Any(x => x.Name.Equals(name));
         }
         public bool BoardExists(string name, string teamName)
         {
             CheckTeamExists(teamName);
-            return _teams.First(x=>x.Name==teamName).Boards.Any(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+            return _teams.First(x=>x.Name==teamName).Boards.Any(x => x.Name.Equals(name));
         }
 
         public ITeam GetTeamIfExists(string name)
