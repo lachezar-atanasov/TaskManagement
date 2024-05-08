@@ -41,6 +41,10 @@ namespace TaskManagement.Commands
                 orderedAndFilteredTasks = orderedAndFilteredTasks.Where(x=>x.Assignee==filterAssignee).Where(x => x.Status == filterStatus).ToList();
             }
             orderedAndFilteredTasks = tasks.OrderBy(x => x.Name).ToList();
+            if (orderedAndFilteredTasks.Count==0)
+            {
+                return $"No tasks with assignee! ";
+            }
             return $"{string.Join(Environment.NewLine, orderedAndFilteredTasks)}";
         }
     }

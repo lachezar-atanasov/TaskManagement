@@ -29,16 +29,38 @@ namespace TaskManagement.Commands
             CheckParametersCount(ExpectedParameters);
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Available Commands:");
-            bool firstEnumValueSkipped = false;
-            foreach (CommandType commandType in Enum.GetValues(typeof(CommandType)))
+
+            // Get all enum values except the first one (Default)
+            CommandType[] commandTypes = Enum.GetValues(typeof(CommandType))
+                .Cast<CommandType>()
+                .Skip(1) // Skip the Default value
+                .ToArray();
+
+            int totalCommands = commandTypes.Length;
+            int commandsPerColumn = 11; // Fixed to 13 rows per column
+            int columnWidth = 30; // Each command is padded to 30 characters
+
+            for (int i = 0; i < commandsPerColumn; i++)
             {
-                if (!firstEnumValueSkipped)
+                // For each row, append the command from each column
+                for (int j = 0; j < 3; j++)
                 {
-                    firstEnumValueSkipped = true;
-                    continue; 
+                    int index = i + j * commandsPerColumn;
+                    if (index < totalCommands)
+                    {
+                        // Format the command to be padded to 30 characters
+                        string command = $"{(int)commandTypes[index]}: {commandTypes[index]}";
+                        sb.Append(command.PadRight(columnWidth));
+                    }
+                    else
+                    {
+                        // If there's no command for this position, just append spaces
+                        sb.Append(' ', columnWidth);
+                    }
                 }
-                sb.AppendLine($"{(int)commandType}: {commandType}");
+                sb.AppendLine(); // Move to the next line after appending all three columns
             }
+
             sb.Append("-------------------");
             return sb.ToString();
         }

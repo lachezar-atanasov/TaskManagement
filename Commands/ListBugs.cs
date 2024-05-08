@@ -56,6 +56,10 @@ namespace TaskManagement.Commands
                 IMember filterMember = Repository.GetMemberIfExists(CommandParameters[2]);
                 orderedAndFilteredBugs = orderedAndFilteredBugs.Where(x=>x.Assignee==filterMember).Where(x => x.Status == filterStatus).ToList();
             }
+            if (orderedAndFilteredBugs.Count == 0)
+            {
+                return $"No bugs with that filter! ";
+            }
             return $"{string.Join(Environment.NewLine, orderedAndFilteredBugs)}";
         }
     }
