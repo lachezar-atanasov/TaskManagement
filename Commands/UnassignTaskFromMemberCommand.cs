@@ -28,7 +28,7 @@ namespace TaskManagement.Commands
             string? currentAssignee = foundTask.Assignee?.Name;
             foundTask.Unassign();
 
-            return $"Task with name {foundTask.Name} successfully unassigned from {currentAssignee}'!";
+            return $"Task with name '{foundTask.Name}' successfully unassigned from '{currentAssignee}'!";
         }
     }
 }

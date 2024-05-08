@@ -33,7 +33,7 @@ namespace TaskManagement.Commands
             }
 
             feedback.SetRating(newRating);
-            return $"Feedback with title {feedback.Name}(id={feedback.Id}) successfully changed status to {newRating}'!";
+            return $"Feedback with title '{feedback.Name}(id={feedback.Id})' successfully changed status to '{newRating}'!";
         }
     }
 }

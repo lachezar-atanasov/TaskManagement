@@ -24,19 +24,17 @@ namespace TaskManagement.Commands
         {
             CheckParametersCount(ExpectedParameters, $"{CommandType.ShowMemberActivity} 'memberName'");
             string memberName = CommandParameters[0];
-            Repository.CheckMemberExists(memberName);
-
-            IMember foundMember = Repository.Members.First(x => x.Name == memberName);
-            if (foundMember.ActivityHistory.LogEvents.Count == 0 && foundMember.ActivityHistory.LogEvents.All(x => x.Assigner?.Name != memberName))
-            {
-                throw new ArgumentException($"Member with name {memberName} have no logs yet! ");
-            }
+            IMember foundMember = Repository.GetMemberIfExists(memberName);
 
             IList<IEventLogger> memberTasksActivityHistory = foundMember.ActivityHistory.LogEvents
                 .Where(x => x.Assigner?.Name == memberName).ToList();
             var totalMemberActivityHistory =
                 memberTasksActivityHistory.Concat(foundMember.ActivityHistory.LogEvents).ToList();
-            return $"Member {memberName}: {Environment.NewLine}" +
+            if (memberTasksActivityHistory.Count == 0)
+            {
+                throw new ArgumentException($"Member with name {memberName} have no logs yet! ");
+            }
+            return $"Member '{memberName}': {Environment.NewLine}" +
                    $"{String.Join(Environment.NewLine, totalMemberActivityHistory.OrderBy(x => x.Time))}";
         }
     }

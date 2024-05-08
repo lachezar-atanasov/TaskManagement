@@ -35,7 +35,7 @@ namespace TaskManagement.Commands
             }
 
             feedback.SetStatus(newFeedbackStatus);
-            return $"Feedback with title {feedback.Name}(id={feedback.Id}) successfully changed status to {newFeedbackStatus}'!";
+            return $"Feedback with title '{feedback.Name}(id={feedback.Id})' successfully changed status to '{newFeedbackStatus}'!";
         }
     }
 }

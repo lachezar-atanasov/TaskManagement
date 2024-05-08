@@ -35,7 +35,7 @@ namespace TaskManagement.Commands
             }
 
             story.SetSize(newStorySize);
-            return $"Story with title {story.Name}(id={story.Id}) successfully changed size to {newStorySize}'!";
+            return $"Story with title '{story.Name}(id={story.Id})' successfully changed size to '{newStorySize}'!";
         }
     }
 }

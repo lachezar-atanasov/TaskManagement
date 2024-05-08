@@ -35,7 +35,7 @@ namespace TaskManagement.Commands
             }
 
             story.SetStatus(newStoryStatus);
-            return $"Story with title {story.Name}(id={story.Id}) successfully changed status to {newStoryStatus}'!";
+            return $"Story with title '{story.Name}(id={story.Id})' successfully changed status to '{newStoryStatus}'!";
         }
     }
 }

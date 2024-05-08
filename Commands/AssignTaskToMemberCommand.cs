@@ -29,7 +29,7 @@ namespace TaskManagement.Commands
             foundMember.AddTask(foundTask);
             foundTask.AssignTo(foundMember);
 
-            return $"Task with name {foundTask.Name} successfully assigned to {foundMember.Name}'!";
+            return $"Task with name '{foundTask.Name}' successfully assigned to '{foundMember.Name}'!";
         }
     }
 }

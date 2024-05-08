@@ -35,7 +35,7 @@ namespace TaskManagement.Commands
             }
 
             story.SetPriority(newStoryPriority);
-            return $"Story with title {story.Name}(id={story.Id}) successfully changed priority to {newStoryPriority}'!";
+            return $"Story with title '{story.Name}(id={story.Id})' successfully changed priority to '{newStoryPriority}'!";
         }
     }
 }

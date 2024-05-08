@@ -34,7 +34,7 @@ namespace TaskManagement.Commands
             var foundBoard = Repository.GetBoardIfExists(boardName, teamName);
             foundBoard.AddTask(Repository.CreateStory(storyName,storyDesc,storyPriority, storySize));
 
-            return $"Story with name {storyName} added successfully to board '{boardName}'!";
+            return $"Story with name '{storyName}' added successfully to board '{boardName}'!";
         }
     }
 }

@@ -22,7 +22,7 @@ namespace TaskManagement.Commands
             CheckParametersCount(ExpectedParameters, $"{CommandType.CreateTeam} 'teamName'");
             string name = CommandParameters[0];
             Repository.AddTeamIfNotExists(Repository.CreateTeam(name));
-            return $"Team with name {name} added successfully!";
+            return $"Team with name '{name}' added successfully!";
         }
     }
 }

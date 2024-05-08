@@ -28,7 +28,7 @@ namespace TaskManagement.Commands
 
             foundTeam.AddBoardIfNotExists(Repository.CreateBoard(boardName));
 
-            return $"Board with name {boardName} added successfully to team '{teamName}'!";
+            return $"Board with name '{boardName}' added successfully to team '{teamName}'!";
         }
     }
 }

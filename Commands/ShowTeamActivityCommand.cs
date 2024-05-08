@@ -30,7 +30,7 @@ namespace TaskManagement.Commands
                 throw new InvalidUserInputException("Team with that name doesn't exists! ");
             }
 
-            var searchedTeam = Repository.Teams.First(x => x.Name == teamName);
+            var searchedTeam = Repository.GetTeamIfExists(teamName);
             var totalTeamActivityHistory = new List<IEventLogger>();
             totalTeamActivityHistory = totalTeamActivityHistory.Concat(searchedTeam.ActivityHistory.LogEvents).ToList();
 

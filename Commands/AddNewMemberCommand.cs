@@ -25,7 +25,7 @@ namespace TaskManagement.Commands
             string name = CommandParameters[0];
 
             Repository.AddMemberIfNotExists(Repository.CreateMember(name));
-            return $"Member with name {name} added successfully!";
+            return $"Member with name '{name}' added successfully!";
         }
     }
 }

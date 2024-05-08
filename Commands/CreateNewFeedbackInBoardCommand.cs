@@ -28,7 +28,7 @@ namespace TaskManagement.Commands
             var foundBoard = Repository.GetBoardIfExists(boardName,teamName);
             foundBoard.AddTask(Repository.CreateFeedback(feedbackName,feedbackDescription));
 
-            return $"Feedback with name {feedbackName} added successfully to board '{boardName}'!";
+            return $"Feedback with name '{feedbackName}' added successfully to board '{boardName}'!";
         }
     }
 }

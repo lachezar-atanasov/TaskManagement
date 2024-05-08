@@ -35,7 +35,7 @@ namespace TaskManagement.Commands
             }
 
             bug.SetStatus(newBugStatus);
-            return $"Bug with name {bug.Name} successfully changed priority to {newBugStatus}'!";
+            return $"Bug with name '{bug.Name}' successfully changed priority to '{newBugStatus}'!";
         }
     }
 }

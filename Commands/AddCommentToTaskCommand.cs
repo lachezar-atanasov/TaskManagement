@@ -29,7 +29,7 @@ namespace TaskManagement.Commands
             var foundMember = Repository.GetMemberIfExists(authorName);
             foundTask.AddComment(Repository.CreateComment(foundMember.Name, commentMessage));
 
-            return $"Successfully added comment to task {foundTask.Name}(id={foundTask.Id})! ";
+            return $"Successfully added comment to task '{foundTask.Name}(id={foundTask.Id}')! ";
         }
     }
 }

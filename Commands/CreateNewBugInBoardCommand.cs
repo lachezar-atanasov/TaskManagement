@@ -34,7 +34,7 @@ namespace TaskManagement.Commands
             var foundBoard = Repository.GetBoardIfExists(boardName,teamName);
             foundBoard.AddTask(Repository.CreateBug(bugName,bugDescription, bugSeverity, bugPriority));
 
-            return $"Bug with name {bugName} added successfully to board '{boardName}'!";
+            return $"Bug with name '{bugName}' added successfully to board '{boardName}'!";
         }
     }
 }

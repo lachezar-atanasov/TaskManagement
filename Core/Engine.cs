@@ -25,9 +25,9 @@ namespace TaskManagement.Core
             {
                 try
                 {
-                    string inputLine = Console.ReadLine().Trim();
+                    string? inputLine = Console.ReadLine()?.Trim();
 
-                    if (inputLine == string.Empty)
+                    if (string.IsNullOrEmpty(inputLine))
                     {
                         throw new InvalidUserInputException(EmptyCommandError);
                     }

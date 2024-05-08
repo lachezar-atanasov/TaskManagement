@@ -35,7 +35,7 @@ namespace TaskManagement.Commands
             }
 
             bug.SetSeverity(newBugSeverity);
-            return $"Bug with name {bug.Name} successfully changed severity to {newBugSeverity}'!";
+            return $"Bug with name '{bug.Name}' successfully changed severity to {newBugSeverity}'!";
         }
     }
 }

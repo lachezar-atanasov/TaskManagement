@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using TaskManagement.Commands;
 using static System.Net.Mime.MediaTypeNames;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace TaskManagement.Core
@@ -18,9 +19,10 @@ namespace TaskManagement.Core
             _repository = repository;
         }
 
-        public ICommand Create(string commandLine)
+        public ICommand Create(string? commandLine)
         {
             string[] arguments = Regex.Split(commandLine, @"\s(?=(?:[^""]*""[^""]*"")*[^""]*$)");
+            arguments = arguments.Select(x => x.Trim('"')).ToArray();
             CommandType commandType = ParseCommandType(arguments[0]);
             List<string> commandParams = ExtractCommandParameters(arguments);
 
