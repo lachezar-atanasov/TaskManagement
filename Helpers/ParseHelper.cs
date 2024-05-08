@@ -37,7 +37,7 @@ namespace TaskManagement.Helpers
         public static Severity ParseSeverityParameter(string enumString)
         {
             Severity parsedEnum;
-            if (Enum.TryParse(enumString, out parsedEnum))
+            if (Enum.TryParse(enumString,true, out parsedEnum))
             {
                 return parsedEnum;
             } 
@@ -46,7 +46,7 @@ namespace TaskManagement.Helpers
         public static Size ParseSizeParameter(string enumString)
         {
             Size parsedEnum;
-            if (Enum.TryParse(enumString, out parsedEnum))
+            if (Enum.TryParse(enumString, true, out parsedEnum))
             {
                 return parsedEnum;
             }
@@ -55,7 +55,7 @@ namespace TaskManagement.Helpers
         public static Status ParseStatusParameter(string enumString)
         {
             Status parsedEnum;
-            if (Enum.TryParse(enumString, out parsedEnum))
+            if (Enum.TryParse(enumString, true, out parsedEnum))
             {
                 return parsedEnum;
             }
@@ -64,7 +64,7 @@ namespace TaskManagement.Helpers
         public static Priority ParsePriorityParameter(string enumString)
         {
             Priority parsedEnum;
-            if (Enum.TryParse(enumString, out parsedEnum))
+            if (Enum.TryParse(enumString, true, out parsedEnum))
             {
                 return parsedEnum;
             }

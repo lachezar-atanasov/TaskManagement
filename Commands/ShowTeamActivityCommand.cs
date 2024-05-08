@@ -49,7 +49,7 @@ namespace TaskManagement.Commands
             }
 
             return $"Team '{teamName}': {Environment.NewLine}" +
-                   $"{string.Join(' ', totalTeamActivityHistory)}";
+                   $"{string.Join(Environment.NewLine, totalTeamActivityHistory)}";
         }
     }
 }

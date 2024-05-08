@@ -66,7 +66,7 @@ namespace TaskManagement.Core
                                 string rightPart = line.Substring(index+RightSyntax.Length);
 
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                Console.Write(leftPart);
+                                Console.Write($"| {leftPart}");
 
                                 
                                 foreach (string word in rightPart.Split(' '))

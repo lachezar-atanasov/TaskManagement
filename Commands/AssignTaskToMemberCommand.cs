@@ -26,6 +26,7 @@ namespace TaskManagement.Commands
 
             var foundTask = Repository.GetTaskById(taskId);
             var foundMember = Repository.GetMemberIfExists(memberName);
+            foundMember.AddTask(foundTask);
             foundTask.AssignTo(foundMember);
 
             return $"Task with name {foundTask.Name} successfully assigned to {foundMember.Name}'!";

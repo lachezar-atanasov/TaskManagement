@@ -4,6 +4,9 @@ using TaskManagement.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using TaskManagement.Commands;
+using static System.Net.Mime.MediaTypeNames;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace TaskManagement.Core
 {
@@ -17,7 +20,7 @@ namespace TaskManagement.Core
 
         public ICommand Create(string commandLine)
         {
-            string[] arguments = commandLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            string[] arguments = Regex.Split(commandLine, @"\s(?=(?:[^""]*""[^""]*"")*[^""]*$)");
             CommandType commandType = ParseCommandType(arguments[0]);
             List<string> commandParams = ExtractCommandParameters(arguments);
 
