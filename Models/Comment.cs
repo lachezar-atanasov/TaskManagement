@@ -1,5 +1,4 @@
-﻿using System;
-using TaskManagement.Models.Contracts;
+﻿using TaskManagement.Models.Contracts;
 
 
 namespace TaskManagement.Models

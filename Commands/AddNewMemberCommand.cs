@@ -1,6 +1,7 @@
 ﻿using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
 using TaskManagement.Commands.Enums;
+using TaskManagement.Commands.Abstract;
 
 namespace TaskManagement.Commands
 {

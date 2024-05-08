@@ -1,24 +1,19 @@
-﻿using System;
-using TaskManagement.Core.Contracts;
+﻿using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
-using System.Linq;
 using TaskManagement.Commands.Enums;
-using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
-using TaskManagement.Models;
-using TaskManagement.Models.Contracts;
-using TaskManagement.Models.Enums;
+using TaskManagement.Commands.Abstract;
 
 namespace TaskManagement.Commands
 {
-    public class UnassignTaskFromMember : BaseCommand
+    public class UnassignTaskFromMemberCommand : BaseCommand
     {
         private const int ExpectedParameters = 1;
-        public UnassignTaskFromMember(IRepository repository)
+        public UnassignTaskFromMemberCommand(IRepository repository)
             : base(repository)
         {
         }
-        public UnassignTaskFromMember(IList<string> commandParameters, IRepository repository)
+        public UnassignTaskFromMemberCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }

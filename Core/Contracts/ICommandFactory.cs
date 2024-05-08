@@ -1,5 +1,4 @@
 ﻿using TaskManagement.Commands.Contracts;
-using System;
 
 namespace TaskManagement.Core.Contracts
 {

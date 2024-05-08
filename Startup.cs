@@ -1,5 +1,4 @@
-﻿using System;
-using TaskManagement.Core;
+﻿using TaskManagement.Core;
 using TaskManagement.Core.Contracts;
 
 namespace TaskManagement

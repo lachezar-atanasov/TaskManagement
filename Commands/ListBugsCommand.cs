@@ -3,21 +3,20 @@ using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using TaskManagement.Commands.Enums;
-using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
-using TaskManagement.Models;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
+using TaskManagement.Commands.Abstract;
 
 namespace TaskManagement.Commands
 {
-    public class ListBugs : BaseCommand
+    public class ListBugsCommand : BaseCommand
     {
-        public ListBugs(IRepository repository)
+        public ListBugsCommand(IRepository repository)
             : base(repository)
         {
         }
-        public ListBugs(IList<string> commandParameters, IRepository repository)
+        public ListBugsCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }

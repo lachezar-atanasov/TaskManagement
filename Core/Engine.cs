@@ -1,9 +1,6 @@
 ﻿using TaskManagement.Commands.Contracts;
 using TaskManagement.Core.Contracts;
 using System;
-using System.Linq;
-using TaskManagement.Commands;
-using TaskManagement.Commands.Enums;
 using TaskManagement.Exceptions;
 
 namespace TaskManagement.Core

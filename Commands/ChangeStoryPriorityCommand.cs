@@ -1,34 +1,32 @@
-﻿using System;
-using TaskManagement.Core.Contracts;
+﻿using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
-using System.Linq;
 using TaskManagement.Commands.Enums;
 using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
-using TaskManagement.Models;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
+using TaskManagement.Commands.Abstract;
 
 namespace TaskManagement.Commands
 {
-    public class ChangeStorySize : BaseCommand
+    public class ChangeStoryPriorityCommand : BaseCommand
     {
         private const int ExpectedParameters = 2;
-        public ChangeStorySize(IRepository repository)
+        public ChangeStoryPriorityCommand(IRepository repository)
             : base(repository)
         {
         }
-        public ChangeStorySize(IList<string> commandParameters, IRepository repository)
+        public ChangeStoryPriorityCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }
 
         protected override string ExecuteCommand()
         {
-            CheckParametersCount(ExpectedParameters,$"{CommandType.ChangeStorySize} 'storyId' " +
-                                                    $"'newSize({Size.Small},{Size.Medium}, {Size.Large})'");
+            CheckParametersCount(ExpectedParameters,$"{CommandType.ChangeStoryPriority} 'storyId' " +
+                                                    $"'newPriority({Priority.Low},{Priority.Medium}, {Priority.High})'");
             int storyId = ParseHelper.ParseIntParameter(CommandParameters[0],"ID");
-            Size newStorySize = ParseHelper.ParseSizeParameter(CommandParameters[1]);
+            Priority newStoryPriority = ParseHelper.ParsePriorityParameter(CommandParameters[1]);
 
             var storyToChange = Repository.GetTaskById(storyId);
             if (storyToChange is not IStory story)
@@ -36,8 +34,8 @@ namespace TaskManagement.Commands
                 throw new InvalidUserInputException($"Task with id {storyId} is not story! ");
             }
 
-            story.SetSize(newStorySize);
-            return $"Story with title {story.Name}(id={story.Id}) successfully changed size to {newStorySize}'!";
+            story.SetPriority(newStoryPriority);
+            return $"Story with title {story.Name}(id={story.Id}) successfully changed priority to {newStoryPriority}'!";
         }
     }
 }

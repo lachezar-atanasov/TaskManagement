@@ -1,24 +1,22 @@
-﻿using System;
-using TaskManagement.Core.Contracts;
+﻿using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
-using System.Linq;
 using TaskManagement.Commands.Enums;
 using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
-using TaskManagement.Models;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
+using TaskManagement.Commands.Abstract;
 
 namespace TaskManagement.Commands
 {
-    public class ChangeStoryStatus : BaseCommand
+    public class ChangeStoryStatusCommand : BaseCommand
     {
         private const int ExpectedParameters = 2;
-        public ChangeStoryStatus(IRepository repository)
+        public ChangeStoryStatusCommand(IRepository repository)
             : base(repository)
         {
         }
-        public ChangeStoryStatus(IList<string> commandParameters, IRepository repository)
+        public ChangeStoryStatusCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }

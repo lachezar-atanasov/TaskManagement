@@ -3,21 +3,20 @@ using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using TaskManagement.Commands.Enums;
-using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
-using TaskManagement.Models;
 using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
+using TaskManagement.Commands.Abstract;
 
 namespace TaskManagement.Commands
 {
-    public class ListTasksWithAssignee : BaseCommand
+    public class ListTasksWithAssigneeCommand : BaseCommand
     {
-        public ListTasksWithAssignee(IRepository repository)
+        public ListTasksWithAssigneeCommand(IRepository repository)
             : base(repository)
         {
         }
-        public ListTasksWithAssignee(IList<string> commandParameters, IRepository repository)
+        public ListTasksWithAssigneeCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }

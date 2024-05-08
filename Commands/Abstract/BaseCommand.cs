@@ -3,9 +3,8 @@ using TaskManagement.Commands.Contracts;
 using TaskManagement.Core.Contracts;
 using TaskManagement.Exceptions;
 using System.Collections.Generic;
-using TaskManagement.Commands.Enums;
 
-namespace TaskManagement.Commands
+namespace TaskManagement.Commands.Abstract
 {
     public abstract class BaseCommand : ICommand
     {
@@ -44,7 +43,7 @@ namespace TaskManagement.Commands
                 throw new InvalidUserInputException($"Invalid number of arguments. Expected: {expectedParameters}, Received: {CommandParameters.Count}{syntaxHelper}");
             }
         }
-        protected void CheckParametersCount(int startRange,int endRange, string? syntaxHelper = null)
+        protected void CheckParametersCount(int startRange, int endRange, string? syntaxHelper = null)
         {
             if (CommandParameters.Count < startRange || CommandParameters.Count > endRange)
             {

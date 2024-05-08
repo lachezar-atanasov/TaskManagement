@@ -1,26 +1,22 @@
-﻿using System;
-using TaskManagement.Core.Contracts;
+﻿using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
-using System.Linq;
 using TaskManagement.Commands.Enums;
-using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
-using TaskManagement.Models;
-using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
+using TaskManagement.Commands.Abstract;
 
 namespace TaskManagement.Commands
 {
-    public class CreateNewBugInBoard : BaseCommand
+    public class CreateNewBugInBoardCommand : BaseCommand
     {
         private const int ExpectedParameters = 6;
         private readonly string _bugPriorities = $"{Priority.Low}, {Priority.Medium}, {Priority.High}";
         private readonly string _bugSeverities = $"{Severity.Minor}, {Severity.Major}, {Severity.Critical}";
-        public CreateNewBugInBoard(IRepository repository)
+        public CreateNewBugInBoardCommand(IRepository repository)
             : base(repository)
         {
         }
-        public CreateNewBugInBoard(IList<string> commandParameters, IRepository repository)
+        public CreateNewBugInBoardCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }

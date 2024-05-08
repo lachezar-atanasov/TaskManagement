@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TaskManagement.Commands.Enums
+﻿namespace TaskManagement.Commands.Enums
 {
     public enum CommandType
     {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TaskManagement.Commands.Contracts
+﻿namespace TaskManagement.Commands.Contracts
 {
     public interface ICommand
     {

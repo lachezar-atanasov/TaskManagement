@@ -48,43 +48,43 @@ namespace TaskManagement.Core
                 case CommandType.CreateNewBoardInTeam:
                     return new CreateNewBoardInTeamCommand(commandParams, _repository);
                 case CommandType.CreateNewBugInBoard:
-                    return new CreateNewBugInBoard(commandParams, _repository);
+                    return new CreateNewBugInBoardCommand(commandParams, _repository);
                 case CommandType.CreateNewFeedbackInBoard:
-                    return new CreateNewFeedbackInBoard(commandParams, _repository);
+                    return new CreateNewFeedbackInBoardCommand(commandParams, _repository);
                 case CommandType.CreateNewStoryInBoard:
-                    return new CreateNewStoryInBoard(commandParams, _repository);
+                    return new CreateNewStoryInBoardCommand(commandParams, _repository);
                 case CommandType.ChangeBugPriority:
-                    return new ChangeBugPriority(commandParams, _repository);
+                    return new ChangeBugPriorityCommand(commandParams, _repository);
                 case CommandType.ChangeBugSeverity:
-                    return new ChangeBugSeverity(commandParams, _repository);
+                    return new ChangeBugSeverityCommand(commandParams, _repository);
                 case CommandType.ChangeBugStatus:
-                    return new ChangeBugStatus(commandParams, _repository);
+                    return new ChangeBugStatusCommand(commandParams, _repository);
                 case CommandType.ChangeFeedbackRating:
-                    return new ChangeFeedbackRating(commandParams, _repository);
+                    return new ChangeFeedbackRatingCommand(commandParams, _repository);
                 case CommandType.ChangeFeedbackStatus:
-                    return new ChangeFeedbackStatus(commandParams, _repository);
+                    return new ChangeFeedbackStatusCommand(commandParams, _repository);
                 case CommandType.ChangeStoryPriority:
-                    return new ChangeStoryPriority(commandParams, _repository);
+                    return new ChangeStoryPriorityCommand(commandParams, _repository);
                 case CommandType.ChangeStorySize:
-                    return new ChangeStorySize(commandParams, _repository);
+                    return new ChangeStorySizeCommand(commandParams, _repository);
                 case CommandType.ChangeStoryStatus:
-                    return new ChangeStoryStatus(commandParams, _repository);
+                    return new ChangeStoryStatusCommand(commandParams, _repository);
                 case CommandType.ListAllTasks:
-                    return new ListAllTasks(commandParams, _repository);
+                    return new ListAllTasksCommand(commandParams, _repository);
                 case CommandType.AssignTaskToMember:
-                    return new AssignTaskToMember(commandParams, _repository);
+                    return new AssignTaskToMemberCommand(commandParams, _repository);
                 case CommandType.UnassignTaskFromMember:
-                    return new UnassignTaskFromMember(commandParams, _repository);
+                    return new UnassignTaskFromMemberCommand(commandParams, _repository);
                 case CommandType.ListTasksWithAssignee:
-                    return new ListTasksWithAssignee(commandParams, _repository);
+                    return new ListTasksWithAssigneeCommand(commandParams, _repository);
                 case CommandType.ListBugs:
-                    return new ListBugs(commandParams, _repository);
+                    return new ListBugsCommand(commandParams, _repository);
                 case CommandType.ListFeedbacks:
-                    return new ListFeedbacks(commandParams, _repository);
+                    return new ListFeedbacksCommand(commandParams, _repository);
                 case CommandType.ListStories:
-                    return new ListStories(commandParams, _repository);
+                    return new ListStoriesCommand(commandParams, _repository);
                 case CommandType.AddCommentToTask:
-                    return new AddCommentToTask(commandParams, _repository);
+                    return new AddCommentToTaskCommand(commandParams, _repository);
                 default:
                     throw new InvalidOperationException("No such command");
             }

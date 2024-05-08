@@ -1,26 +1,22 @@
-﻿using System;
-using TaskManagement.Core.Contracts;
+﻿using TaskManagement.Core.Contracts;
 using System.Collections.Generic;
-using System.Linq;
 using TaskManagement.Commands.Enums;
-using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
-using TaskManagement.Models;
-using TaskManagement.Models.Contracts;
 using TaskManagement.Models.Enums;
+using TaskManagement.Commands.Abstract;
 
 namespace TaskManagement.Commands
 {
-    public class CreateNewStoryInBoard : BaseCommand
+    public class CreateNewStoryInBoardCommand : BaseCommand
     {
         private const int ExpectedParameters = 6;
         private readonly string _storyPriorities = $"{Priority.Low}, {Priority.Medium}, {Priority.High}";
         private readonly string _storySizes = $"{Size.Small}, {Size.Medium}, {Size.Large}";
-        public CreateNewStoryInBoard(IRepository repository)
+        public CreateNewStoryInBoardCommand(IRepository repository)
             : base(repository)
         {
         }
-        public CreateNewStoryInBoard(IList<string> commandParameters, IRepository repository)
+        public CreateNewStoryInBoardCommand(IList<string> commandParameters, IRepository repository)
             : base(commandParameters, repository)
         {
         }
