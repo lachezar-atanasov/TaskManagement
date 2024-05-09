@@ -1,4 +1,4 @@
-﻿namespace TaskManagement.Models.Contracts
+﻿namespace TaskManagement.Models.Contracts.Generic
 {
     public interface IHistoryable
     {

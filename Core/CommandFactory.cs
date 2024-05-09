@@ -30,6 +30,8 @@ namespace TaskManagement.Core
                     return new HelpCommand(commandParams, _repository);
                 case CommandType.AddMember:
                     return new AddNewMemberCommand(commandParams, _repository);
+                case CommandType.AddBugFixSteps:
+                    return new AddBugFixStepsCommand(commandParams, _repository);
                 case CommandType.ListAllMembers:
                     return new ListAllMembersCommand(commandParams, _repository);
                 case CommandType.ListAllTeamBoards:

@@ -1,6 +1,6 @@
 ﻿using TaskManagement.Models.Enums;
-using TaskManagement.Models.Contracts;
 using TaskManagement.Exceptions;
+using TaskManagement.Models.Contracts;
 
 namespace TaskManagement.Models
 {

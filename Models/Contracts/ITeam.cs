@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TaskManagement.Models.Contracts.Generic;
 
 namespace TaskManagement.Models.Contracts
 {

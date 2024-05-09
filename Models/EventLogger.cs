@@ -1,7 +1,6 @@
 ﻿using System;
 using TaskManagement.Models.Contracts;
 
-
 namespace TaskManagement.Models
 {
     public class EventLogger : IEventLogger

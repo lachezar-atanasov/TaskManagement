@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using TaskManagement.Models.Contracts;
 
-
 namespace TaskManagement.Models
 {
     public class ActivityHistory : IActivityHistory

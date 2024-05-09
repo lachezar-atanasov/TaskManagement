@@ -46,7 +46,7 @@ namespace TaskManagement.Models
 
         public override string AdditionalInfo()
         {
-            return $", Severity: { Severity}, Priority: { Priority}";
+            return $", {Environment.NewLine}Severity: { Severity}, Priority: { Priority}, StepsForFix: {(Steps.Count==0?"No":"Yes")}";
         }
 
         public void SetPriority(Priority priority)
@@ -79,9 +79,10 @@ namespace TaskManagement.Models
             }
         }
 
-        public void AddStep(string stepToAdd)
+        public void AddSteps(List<string> stepsToAdd)
         {
-            _steps.Add(stepToAdd);
+            AddLogWithAssignerIfPresent($"Added steps for fixing the bug! ");
+            _steps.AddRange(stepsToAdd);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using TaskManagement.Models.Contracts;
 
-
 namespace TaskManagement.Models
 {
     public class Comment : IComment

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using TaskManagement.Commands.Enums;
 using TaskManagement.Exceptions;
 using TaskManagement.Helpers;
-using TaskManagement.Models.Contracts;
 using TaskManagement.Commands.Abstract;
+using TaskManagement.Models.Contracts;
 
 namespace TaskManagement.Commands
 {
