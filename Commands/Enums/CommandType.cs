@@ -4,8 +4,8 @@
     {
         Default,
         Help,
-        AddMember,
         CreateTeam,
+        AddMember,
         AddMemberToTeam,
         CreateNewBoardInTeam,
         AddCommentToTask,

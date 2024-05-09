@@ -7,8 +7,4 @@
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Contracts\ClassInterfaces\" />
-  </ItemGroup>
-
 </Project>
